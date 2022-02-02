@@ -1,9 +1,12 @@
 'use strict'
-//rutas para el controlador de los maestros
-var express = require('express');
-var MaestrosControllers = require('../controllers/maestros');//Aqui se obtiene el modulo que se exporto en maestros.js
-var api = express.Router();
-var md_auth = require('../middlewares/autenticate');
-api.get('/probando-controlador',md_auth.asegurarAutenticacion, MaestrosControllers.test);//Aqui se crea la ruta
-api.post('/login',MaestrosControllers.loginMaestro);
-module.exports = api;//Se exporta un modulo mas.
+// rutas para el controlador de los maestros
+const express = require('express')
+// Aqui se obtiene el modulo que se exporto en maestros.js
+const MaestrosControllers = require('../controllers/maestros')
+const api = express.router()
+const mdAuth = require('../middlewares/autenticate')
+api.get('/probando-controlador', mdAuth.asegurarAutenticacion, MaestrosControllers.test)
+// Aqui se crea la ruta
+api.post('/login', MaestrosControllers.loginMaestro)
+api.post('/register')
+module.exports = api// Se exporta un modulo mas.
