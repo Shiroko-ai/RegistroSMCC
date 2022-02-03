@@ -12,7 +12,6 @@ const adminRoutes = require('./routes/admin')
 // configuracion de bodyparser
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())// convertir a objetos json
-
 // configurar cabeceras http
 
 // rutas base
