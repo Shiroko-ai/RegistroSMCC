@@ -34,7 +34,8 @@ function Form (props) {
       },
       body: JSON.stringify({
         numero_trabajador: checkUser.user,
-        password: checkUser.password
+        password: checkUser.password,
+        gethash: true
       })
     })
       .then((res) => res.json())

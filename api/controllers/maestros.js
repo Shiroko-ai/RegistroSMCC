@@ -11,7 +11,6 @@ function test (req, res) {
 
 function loginMaestro (req, res) {
   const params = req.body
-  console.log(params)
   const numeroTrabajador = params.numero_trabajador
   const password = params.password
 
@@ -22,13 +21,13 @@ function loginMaestro (req, res) {
       if (!maestro) {
         res.status(404).send({ message: 'No existe el usuario, favor de contactar con administración' })
       } else {
-        console.log(maestro)
         bcrypt.compare(password, maestro.password, function (err, result) {
           if (err) {
             throw err
           } else
           if (result) {
             if (params.gethash) {
+              console.log('entre')
               // devolver token jwt
               res.status(200).send({
                 token: jwt.createToken(maestro)

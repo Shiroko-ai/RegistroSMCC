@@ -9,8 +9,6 @@ exports.createToken = function (maestro) {
     name: maestro.nombre,
     surname: maestro.apellido,
     email: maestro.email,
-    academia: maestro.academia,
-    cel_encargado: maestro.cel_encargado,
     iat: moment().unix(),
     exp: moment().add(30, 'days').unix
   }
