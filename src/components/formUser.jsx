@@ -15,7 +15,6 @@ function Form (props) {
     password: ''
   })
   function changeHandler (event) {
-    console.log('entre')
     const { id, value } = event.target
     setValue((prevValue) => {
       return {
@@ -67,7 +66,7 @@ function Form (props) {
                             className='form-control form-control-user'
                             id='password' aria-describedby='emailHelp'
                             placeholder='Ingresa tu contraseña'
-                            style={{ color: '#800040' }} Handler={changeHandler}
+                            Handler={changeHandler}
                           />
                         <ButtonLogin
                           text = "Iniciar sesion"
@@ -85,12 +84,6 @@ function Form (props) {
                           to='/register'
                           text = "Registrarse"
                         />
-
-                        <LoginLink
-                        to= '/hola'
-                        text = "hola"
-                        />
-
                       </div>
                       <div className='text-center'>
                         <p className='h4 mb-4' style={{ color: '#800040' }}>

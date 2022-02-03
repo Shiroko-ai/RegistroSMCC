@@ -6,16 +6,14 @@ const Admin = require('../models/admin')
 // este controlador debe de ejecutarlo unicamente el admin debido a que es el unico que podra guardar maestros
 function saveMaestro (req, res) {
   const maestro = new Maestro()
-
+  console.log('entre')
   const params = req.body
   maestro.nombre = params.nombre
   maestro.numero_trabajador = params.numero_trabajador
   maestro.apellido_paterno = params.apellido_paterno
   maestro.apellido_materno = params.apellido_materno
-  maestro.academia = params.academia
   maestro.correo = params.correo
-  maestro.celular_encargado = params.celular_encargado
-
+  console.log(maestro)
   // TODO: encriptar la contraseña
   const saltRounds = 10
   if (params.password) {
@@ -29,7 +27,7 @@ function saveMaestro (req, res) {
         }
         maestro.password = hash
 
-        if (maestro.nombre != null && maestro.numero_trabajador != null && maestro.apellido_paterno != null && maestro.apellido_materno != null && maestro.academia != null && maestro.correo != null && maestro.celular_encargado != null) {
+        if (maestro.nombre != null && maestro.numero_trabajador != null && maestro.apellido_paterno != null && maestro.apellido_materno != null && maestro.correo != null) {
           maestro.save((err, maestroStored) => { // Aqui se guarda el usuario
             if (err) {
               res.status(500).send({ message: 'Error al guardar usuario' })
@@ -37,7 +35,8 @@ function saveMaestro (req, res) {
               if (!maestroStored) {
                 res.status(404).send({ message: 'No se ha registrado el usuario' })
               } else {
-                res.status(200).send({ maestro: maestroStored })
+                // res.status(200).send({ maestro: maestroStored })
+                res.status(200).send({ message: 'Se ha guardado el maestro con exito' })
               }
             }
           })
