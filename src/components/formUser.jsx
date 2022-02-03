@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 // import Headingform from './HeadingForm';
 // import InputUser from './InputUser';
 // import ButtonUser from './ButtonUser';
-import { Link } from 'react-router-dom'
 import ButtonLogin from './ButtonLogin'
 import Field from './FieldForm'
+import HeadingForm from './HeadingUser'
 import LoginLink from './LoginLink'
 
 function Form (props) {
@@ -55,12 +55,9 @@ function Form (props) {
                 <div className='col-lg-6'>
                   <div className='p-5'>
                     <form className='user' onSubmit={submitHandler}>
-                      <div className='text-center'>
-                        <h1 className='h4 mb-4' style={{ color: '#800040' }}>
-                          Sistema de control de adeudos
-                        </h1>
-                      </div>
-
+                    <HeadingForm
+                      text = "Sistema de control de adeudos"
+                    />
                         <Field
                           type='text'
                           className='form-control form-control-user'
@@ -79,20 +76,19 @@ function Form (props) {
                         text = "Iniciar sesion"
                         type = "submit"
                       />
-
                     </form>
                     <hr />
                     <LoginLink
                     text = "Olvidaste tu contrasenia?"
-                    link = {true}
+                    href = 'forgot-password.html'
                     />
                     <div className='text-center'>
-                      <Link
-                        to='/register' class='small'
-                        style={{ color: '#800040' }}
+                      <LoginLink
+                        to='/register'
+                        link = {true}
                       >
                         Registrarse
-                      </Link>
+                      </LoginLink>
                     </div>
                     <div className='text-center'>
                       <p className='h4 mb-4' style={{ color: '#800040' }}>
