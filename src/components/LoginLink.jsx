@@ -3,7 +3,7 @@ export default function LoginLink (props) {
   return (
       <div className='text-center'>
       <Link
-        to={props.to} class='small'
+        to={props.to} className='small'
         style={{ color: '#800040' }}
       >
         {props.text}

@@ -3,7 +3,7 @@ import ButtonLogin from './ButtonLogin'
 import Field from './FieldForm'
 import HeadingForm from './HeadingUser'
 import LoginLink from './LoginLink'
-
+import Register from '../Register'
 function Form (props) {
   const [value, setValue] = useState({
     user: '',
@@ -14,6 +14,7 @@ function Form (props) {
     user: '',
     password: ''
   })
+  const [login, setLogin] = useState(null)
   function changeHandler (event) {
     const { id, value } = event.target
     setValue((prevValue) => {
@@ -39,9 +40,18 @@ function Form (props) {
       })
     })
       .then((res) => res.json())
-      .then((res) => setInicioSesion(res.message))
+      .then((res) => {
+        setInicioSesion(res.message)
+        return res // Siempre tenemos que retornar la res para poder
+        // utilizarla en otro .then
+      })
+      .then((res) => {
+        res.token ? setLogin(res) : setLogin(null)
+      })
   }
-  return (
+
+  if (!login) {
+    return (
       <div className='container-center'>
         <div className='row justify-content-center'>
           <div className='col-xl-10 col-lg-12 col-md-9'>
@@ -102,7 +112,10 @@ function Form (props) {
         </div>
 
       </div>
-  )
+    )
+  } else {
+    return <Register />
+  }
 }
 
 export default Form

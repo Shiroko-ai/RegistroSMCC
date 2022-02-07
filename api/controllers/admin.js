@@ -1,7 +1,6 @@
 'use strict'
 const bcrypt = require('bcrypt')
 const Maestro = require('../models/maestros')
-const jwt = require('../services/jwt')
 const Admin = require('../models/admin')
 // este controlador debe de ejecutarlo unicamente el admin debido a que es el unico que podra guardar maestros
 function saveMaestro (req, res) {
@@ -71,7 +70,6 @@ function loginAdmin (req, res) {
             if (params.gethash) {
               // devolver token jwt
               res.status(200).send({
-                token: jwt.createToken(admin)
               })
             } else {
               res.status(200).send({ admin: admin })

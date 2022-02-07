@@ -1,7 +1,7 @@
 'use strict'
 const bcrypt = require('bcrypt')
 const Maestro = require('../models/maestros')
-const jwt = require('../services/jwt')
+const jwt = require('../middlewares/autenticate')
 function test (req, res) {
   res.status(200).send({
     message: 'El controlador funciona'
@@ -27,10 +27,16 @@ function loginMaestro (req, res) {
           } else
           if (result) {
             if (params.gethash) {
-              console.log('entre')
+              const user =
+              {
+                user: maestro.user,
+                password: maestro.password
+              }
+              const accesstoken = jwt.generateAccessToken(user)
               // devolver token jwt
               res.status(200).send({
-                token: jwt.createToken(maestro)
+                numero_trabajador: maestro.numero_trabajador,
+                token: accesstoken
               })
             } else {
               res.status(200).send({ maestro: maestro })
