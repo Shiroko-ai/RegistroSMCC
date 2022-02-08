@@ -10,4 +10,6 @@ api.put('/update-maestro/', AdminControllers.updateMaestro)// el id es obligator
 api.post('/delete-maestro/', AdminControllers.deleteMaestro)
 api.post('/register-admin/', AdminControllers.saveAdmin)
 api.post('/delete-admin/', AdminControllers.deleteAdmin)
+api.get('/getMaestros/', AdminControllers.getMaestros)
 module.exports = api// Se tiene que exportar la api para hacer las rutas
+// IMPORTANT : La url que se antepone es /administration/

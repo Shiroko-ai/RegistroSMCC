@@ -3,6 +3,8 @@ import FieldFormSmall from './FieldFormSmall'
 import HeadingForm from './HeadingUser'
 import Field from './FieldForm'
 import LoginLink from './LoginLink'
+import IPNImage from './IPNLogin'
+import ButtonLogin from './ButtonLogin'
 export default function FormRegister () {
   const [user, setUser] = useState({
     nombre: '',
@@ -60,7 +62,7 @@ export default function FormRegister () {
           <div className='card o-hidden border-0 shadow-lg my-5'>
             <div className='card-body p-0'>
               <div className='row'>
-                <div className='col-lg-6 d-none d-lg-block bg-login-image' />
+                <IPNImage />
                 <div className='col-lg-6'>
                   <div className='p-5'>
                     <form className='user' onSubmit={submitHandler}>
@@ -106,9 +108,9 @@ export default function FormRegister () {
                       Handler = {changeHandler}
                       />
                       <div>
-                      <button type='submit' className='btn btn-primary btn-user btn-block'>
-                        Registrarse
-                      </button>
+                      <ButtonLogin
+                      type = 'submit'
+                      text = 'Registrarse' />
                        </div>
                     </form>
                     <hr />

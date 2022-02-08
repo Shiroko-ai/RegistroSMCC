@@ -181,6 +181,17 @@ function updateAdmin (req, res) {
     }
   })
 }
+function getMaestros (req, res) {
+  Maestro.find({}, (err, maestros) => {
+    if (err) {
+      throw err
+    } else {
+      const sendmaestros = []
+      maestros.forEach(maestro => { sendmaestros.push(maestro) })
+      res.status(200).send({ sendmaestros })
+    }
+  })
+}
 module.exports = {
   loginAdmin: loginAdmin,
   saveMaestro: saveMaestro,
@@ -188,5 +199,6 @@ module.exports = {
   deleteMaestro: deleteMaestro,
   saveAdmin: saveAdmin,
   deleteAdmin: deleteAdmin,
-  updateAdmin: updateAdmin
+  updateAdmin: updateAdmin,
+  getMaestros: getMaestros
 }

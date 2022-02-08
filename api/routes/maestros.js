@@ -7,3 +7,4 @@ const api = express.Router()
 // api.get('/probando-controlador', mdAuth.asegurarAutenticacion, MaestrosControllers.test)// Aqui se crea la ruta
 api.post('/login', MaestrosControllers.loginMaestro)
 module.exports = api// Se exporta un modulo mas.
+// IMPORTANT : La url que se antepone es /maestros/
