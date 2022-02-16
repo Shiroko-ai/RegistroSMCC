@@ -12,6 +12,7 @@ function saveMaestro (req, res) {
   maestro.apellido_paterno = params.apellido_paterno
   maestro.apellido_materno = params.apellido_materno
   maestro.correo = params.correo
+  maestro.isAdmin = params.isAdmin
   console.log(maestro)
   // TODO: encriptar la contraseña
   const saltRounds = 10
@@ -35,6 +36,7 @@ function saveMaestro (req, res) {
                 res.status(404).send({ message: 'No se ha registrado el usuario' })
               } else {
                 // res.status(200).send({ maestro: maestroStored })
+                console.log('maestro guardado', maestroStored)
                 res.status(200).send({ message: 'Se ha guardado el maestro con exito' })
               }
             }

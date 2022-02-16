@@ -11,7 +11,8 @@ const MaestroSchema = mongoose.Schema({
   academia: String,
   correo: String,
   celular_encargado: String,
-  password: String
+  password: String,
+  isAdmin: Boolean
 })
 
 module.exports = mongoose.model('Maestro', MaestroSchema)

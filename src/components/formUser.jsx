@@ -3,19 +3,21 @@ import ButtonLogin from './ButtonLogin'
 import Field from './FieldForm'
 import HeadingForm from './HeadingUser'
 import LoginLink from './LoginLink'
-import Register from '../Register'
+import StartAdmin from '../StartAdmin'
 import IPNImage from './IPNLogin'
 function Form (props) {
   const [value, setValue] = useState({
     user: '',
     password: ''
   })
+
   const [inicioSesion, setInicioSesion] = useState('')
   const [checkUser, setCheckUser] = useState({
     user: '',
     password: ''
   })
-  const [login, setLogin] = useState(null)
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [isLoggedIn, setLoggedIn] = useState(false)
   function changeHandler (event) {
     const { id, value } = event.target
     setValue((prevValue) => {
@@ -42,16 +44,21 @@ function Form (props) {
     })
       .then((res) => res.json())
       .then((res) => {
+        setIsAdmin(() => {
+          return res.isAdmin
+        })
         setInicioSesion(res.message)
         return res // Siempre tenemos que retornar la res para poder
         // utilizarla en otro .then
       })
       .then((res) => {
-        res.token ? setLogin(res) : setLogin(null)
+        if (res.token) {
+          setLoggedIn(true)
+        }
       })
   }
 
-  if (!login) {
+  if (!isLoggedIn) {
     return (
       <div className='container-center'>
       <div className='row justify-content-center'>
@@ -114,8 +121,11 @@ function Form (props) {
 
     </div>
     )
-  } else {
-    return <Register />
+  } else if (isLoggedIn) {
+    return <StartAdmin
+            worker = {checkUser.user}
+            isAdmin = {isAdmin}
+    />
   }
 }
 

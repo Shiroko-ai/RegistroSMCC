@@ -30,13 +30,15 @@ function loginMaestro (req, res) {
               const user =
               {
                 user: maestro.user,
-                password: maestro.password
+                password: maestro.password,
+                isAdmin: maestro.isAdmin
               }
               const accesstoken = jwt.generateAccessToken(user)
               // devolver token jwt
               res.status(200).send({
                 numero_trabajador: maestro.numero_trabajador,
-                token: accesstoken
+                token: accesstoken,
+                isAdmin: maestro.isAdmin
               })
             } else {
               res.status(200).send({ maestro: maestro })

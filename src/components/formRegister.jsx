@@ -12,7 +12,8 @@ export default function FormRegister () {
     apellido_paterno: '',
     apellido_materno: '',
     password: '',
-    correo: ''
+    correo: '',
+    isAdmin: false
   })
   const [value, setValue] = useState({
     nombre: '',
@@ -20,12 +21,14 @@ export default function FormRegister () {
     apellido_paterno: '',
     apellido_materno: '',
     password: '',
-    correo: ''
+    correo: '',
+    isAdmin: false
   })
 
   const [Registrarse, setRegistrarse] = useState('')
   function submitHandler (event) {
     event.preventDefault()
+    console.log(value)
     setUser(value)
     fetch('http://localhost:8080/administration/register', {
       method: 'POST',
@@ -38,7 +41,8 @@ export default function FormRegister () {
         password: user.password,
         apellido_paterno: user.apellido_paterno,
         apellido_materno: user.apellido_materno,
-        correo: user.correo
+        correo: user.correo,
+        isAdmin: user.isAdmin
       })
     })
       .then((res) => res.json())
@@ -48,12 +52,24 @@ export default function FormRegister () {
   function changeHandler (event) {
     const { id, value } = event.target
     setValue((prevValue) => {
-      console.log(prevValue)
       return ({
         ...prevValue,
         [id]: value
       })
     })
+  }
+
+  function handleCheck (event) {
+    const checked = event.target.checked
+    if (checked) {
+      setValue((prevValue) => {
+        return { ...prevValue, isAdmin: true }
+      })
+    } else {
+      setValue((prevValue) => {
+        return { ...prevValue, isAdmin: false }
+      })
+    }
   }
   return (
     <div className='container-center'>
@@ -107,11 +123,16 @@ export default function FormRegister () {
                       placeholder = 'Contrasena'
                       Handler = {changeHandler}
                       />
+                        <div className='form-check' style={{ color: 'black', paddingBottom: '15px' }}>
+                         <input className='form-check-input' type='checkbox' value="" id="flexCheckDefault" onChange={handleCheck}
+                         /><p style={{ color: 'gray' }}>Usuario administrador</p>
+                       </div>
                       <div>
                       <ButtonLogin
                       type = 'submit'
                       text = 'Registrarse' />
                        </div>
+
                     </form>
                     <hr />
                     <div className='text-center'>
