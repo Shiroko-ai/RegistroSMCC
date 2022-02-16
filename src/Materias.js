@@ -1,17 +1,17 @@
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
-export default function Start (props) {
+export default function Materias () {
   return (<body id="page-top">
 
     {/* <!-- Page Wrapper --> */}
     <div id="wrapper">
 
-  <Sidebar
-  isAdmin = {props.isAdmin}
-  />
+   <Sidebar
+   name = "ADMINISTRADOR "
+   />
         {/* <!-- FIN DEL MENÚ --> */}
 
-{/* <!------------------------ INICIA ENCABEZADO DEL SITIO ------------------------------------------------------------> */}
+   {/* <!------------------------ INICIA ENCABEZADO DEL SITIO ------------------------------------------------------------> */}
         {/* <!-- Content Wrapper --> */}
         <div id="content-wrapper" className="d-flex flex-column">
         <Navbar />
@@ -21,59 +21,70 @@ export default function Start (props) {
                 {/* <!-- Topbar --> */}
 
                 {/* <!-- End of Topbar --> */}
-{/* <!------------------------ FIN ENCABEZADO DEL SITIO --------------------------------------------------------------> */}
+   {/* <!------------------------ FIN ENCABEZADO DEL SITIO --------------------------------------------------------------> */}
 
-{/* <!------------------------ INCIA DEL CONTENIDO DE LA PÁGINA ------------------------------------------------------> */}
-
-                {/* <!-- Begin Page Content --> */}
-                <div className="container-fluid">
+   {/* <!------------------------ INCIA DEL CONTENIDO DE LA PÁGINA ------------------------------------------------------> */}
+   <div className="container-fluid">
 
                     {/* <!-- Page Heading --> */}
                     <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 className="h3 mb-0 text-gray-800">Sistema de Adeudos</h1>
+                        <h1 className="h3 mb-0 text-gray-800">Materias</h1>
                         {/* <!--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>--> */}
                     </div>
 
                     {/* <!-- NOTA: Aquí va la tabla de estado de documentos pero se muestra con JS y AJAX--> */}
 
-                {/* <!-- Begin Page Content --> */}
+                    {/* <!-- Begin Page Content --> */}
                 <div className="container-fluid">
 
                     {/* <!-- DataTales Example --> */}
                     <div className="card shadow mb-4">
                         <div className="card-header py-3">
-                            <h6 className="m-0 font-weight-bold text-primary" style={{ color: 'gray' }}>Estado de Documentos</h6>
+                            <h6 className="m-0 font-weight-bold text-primary">Materias</h6>
+
+                            <div align="right">
+                                <a href="#" className="btn btn-success">Nuevo</a>
+                            </div>
+
                         </div>
+
                         <div className="card-body">
                             <div className="table-responsive">
                                 <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Nombre Archivo</th>
-                                            <th>Fecha</th>
-                                            <th>Última actualización</th>
-                                            <th>Acciones</th>
+                                            <th>Clave</th>
+                                            <th>Nombre</th>
+                                            <th>Carrera</th>
+                                            <th>Programa</th>
+                                            <th>Nivel</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
-                                        <tr><th>Nombre</th>
-                                            <th>Fecha</th>
-                                            <th>Última actualización</th>
-                                            <th>Acciones</th>
+                                        <tr>
+                                            <th>Clave</th>
+                                            <th>Nombre</th>
+                                            <th>Carrera</th>
+                                            <th>Programa</th>
+                                            <th>Nivel</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td>Adeudos_20160071</td>
-                                            <td>10/11/2021</td>
-                                            <td>12/11/2021</td>
+                                            <td>CM115</td>
+                                            <td>Administración Financiera</td>
+                                            <td>Ing. Sistemas computacionales</td>
+                                            <td>09</td>
+                                            <td>4</td>
                                             <td align="center">
                                                 <a href="#" className="btn btn-success btn-circle btn-sm">
-                                                    <i className="fab"><img src="img/icon-ojo.png" /></i>
+                                                    <i className="fab"><img src="img/icon-ojo.png"/></i>
                                                 </a>
                                                 <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                                    <i className="fas"><img src="img/icon-editar" /></i>
+                                                    <i className="fas"><img src="img/icon-editar"/></i>
                                                 </a>
                                                 <a href="#" className="btn btn-danger btn-circle btn-sm">
                                                     <i className="fas fa-trash"></i>
@@ -92,7 +103,7 @@ export default function Start (props) {
             </div>
             {/* <!-- End of Main Content --> */}
 
- {/* <!------------------------ FIN DEL CONTENIDO DE LA PÁGINA ----------------------------------------------------->                    */}
+   {/* <!------------------------ FIN DEL CONTENIDO DE LA PÁGINA ----------------------------------------------------->                    */}
 
             </div>
             {/* <!-- End of Main Content --> */}
@@ -155,6 +166,5 @@ export default function Start (props) {
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
 
-</body>
-  )
+   </body>)
 }

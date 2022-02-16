@@ -15,7 +15,6 @@ export default function StartAdmin (props) {
 
   }
   function handleErase (numeroTrabajador) {
-    console.log('entre')
     fetch('http://localhost:8080/administration/delete-maestro', {
       method: 'POST',
       headers: {
@@ -46,15 +45,15 @@ export default function StartAdmin (props) {
         Borrar
         </button>
     </td>
-    <td align='center'>{docente.isAdmin && 'Si'}</td>
+    <td align='center'>{docente.isAdmin ? 'Si' : 'No'}</td>
     </tr>)
   }
   return (<div id="page-top">
-
   {/* <!-- Page Wrapper --> */}
   <div id="wrapper">
     <Sidebar
     name = "Administrador"
+    isAdmin = {props.isAdmin}
     />
       <div id="content-wrapper" className="d-flex flex-column">
           <div id="content">
@@ -137,7 +136,6 @@ export default function StartAdmin (props) {
           {/* <!-- End of Main Content --> */}
 
           {/* <!-- Footer --> */}
-
       </div>
       {/* <!-- End of Content Wrapper --> */}
 

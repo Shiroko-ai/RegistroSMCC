@@ -9,11 +9,11 @@ export default function Sidebar (props) {
     }}>
 
         {/* <!-- Sidebar - Brand --> */}
-        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+        <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/administration">
             <div className="sidebar-brand-icon rotate-n-15">
             </div>
             <div className="sidebar-brand-text mx-3">ADMINISTRADOR</div>
-        </a>
+        </Link>
 
         {/* <!-- Divisor --> */}
         <hr className="sidebar-divider my-0" />
@@ -99,11 +99,11 @@ export default function Sidebar (props) {
     }}>
 
         {/* <!-- Sidebar - Brand --> */}
-        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+        <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/index">
             <div className="sidebar-brand-icon rotate-n-15">
             </div>
             <div className="sidebar-brand-text mx-3">USUARIO </div>
-        </a>
+        </Link>
 
         {/* <!-- Divisor --> */}
         <hr className="sidebar-divider my-0" />
@@ -125,14 +125,6 @@ export default function Sidebar (props) {
         </div>
 
         {/* <!-- Nav Item - Pages Collapse Menu --> */}
-        <li className="nav-item">
-            <Link to = "/generate-document" style={{ textDecoration: 'none' }} className="nav-link">
-
-                <i className="fas fa-fw fa-cog"></i>
-                <span>Generar documento</span>
-
-            </Link>
-        </li>
 
         {/* <!-- Nav Item - Utilities Collapse Menu --> */}
         <li className="nav-item">
@@ -157,16 +149,16 @@ export default function Sidebar (props) {
 
         {/* <!-- Nav Item - Pages Collapse Menu --> */}
         <li className="nav-item">
-            <a className="nav-link collapsed" href="docentes.php">
+            <Link className="nav-link collapsed" to="/administration">
                 <i className="fas fa-fw fa-folder"></i>
                 <span>Docentes</span>
-            </a>
+            </Link>
         </li>
         <li className="nav-item">
-            <a className="nav-link collapsed" href="materias.php">
+            <Link className="nav-link collapsed" to="/materias">
                 <i className="fas fa-fw fa-folder"></i>
                 <span>Materias</span>
-            </a>
+            </Link>
         </li>
 
         {/* <!-- Divider --> */}

@@ -5,6 +5,7 @@ import HeadingForm from './HeadingUser'
 import LoginLink from './LoginLink'
 import StartAdmin from '../StartAdmin'
 import IPNImage from './IPNLogin'
+import Start from '../Start'
 function Form (props) {
   const [value, setValue] = useState({
     user: '',
@@ -44,9 +45,9 @@ function Form (props) {
     })
       .then((res) => res.json())
       .then((res) => {
-        setIsAdmin(() => {
-          return res.isAdmin
-        })
+        if (res.isAdmin) {
+          setIsAdmin(true)
+        }
         setInicioSesion(res.message)
         return res // Siempre tenemos que retornar la res para poder
         // utilizarla en otro .then
@@ -122,10 +123,16 @@ function Form (props) {
     </div>
     )
   } else if (isLoggedIn) {
-    return <StartAdmin
+    if (isAdmin) {
+      return <StartAdmin
             worker = {checkUser.user}
             isAdmin = {isAdmin}
     />
+    } else {
+      return <Start
+            isAdmin = {isAdmin}
+      />
+    }
   }
 }
 
