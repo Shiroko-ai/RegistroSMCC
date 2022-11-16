@@ -3,8 +3,8 @@ export default function ButtonLogin (props) {
     type={props.type}
     className='btn btn-primary btn-user btn-block'
     style={{
-      backgroundColor: '#800040',
-      borderColor: '#800040'
+      backgroundColor: '#b1b1b1',
+      borderColor: '#b1b1b1'
     }}
   >{props.text}
   </button>)

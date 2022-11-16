@@ -3,7 +3,7 @@ export default function FieldFormSmall (props) {
     <input
       type={props.type} className='form-control form-control-user'
       id={props.id} aria-describedby='emailHelp'
-      placeholder={props.placeholder} style={{ color: '#800040' }}
+      placeholder={props.placeholder} style={{ color: 'black' }}
       onChange = {props.Handler}
     />
   </div>)
