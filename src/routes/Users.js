@@ -51,12 +51,14 @@ export default function Users (props) {
     </button>
         </div>
         <div className="col">
+        <Link to='/send-email'>
         <button style={{
           borderRadius: '10px',
           padding: '10px',
           border: '1px solid gray'
         }}>Envío de correo
     </button>
+    </Link>
         </div>
         <div className="col">
         <button style={{

@@ -11,6 +11,7 @@ import RegisterMMD from './routes/RegisterMMD'
 import Info from './routes/Info'
 import RegisterUserAdmin from './routes/RegisterUserAdmin'
 import Analytics from './routes/Analytics'
+import SendEmail from './routes/SendEmail'
 ReactDOM.render(
   <Router>
     <Routes>
@@ -24,6 +25,7 @@ ReactDOM.render(
       <Route exact path= '/info' element={<Info />} />
     <Route exact path= '/register-user-admin' element={<RegisterUserAdmin />} />
     <Route exact path= '/analytics' element={<Analytics />} />
+    <Route exact path= '/send-email' element={<SendEmail />} />
     </Routes>
   </Router>,
   document.getElementById('root')

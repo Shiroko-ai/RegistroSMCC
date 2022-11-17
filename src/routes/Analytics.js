@@ -1,12 +1,14 @@
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import 'charts.css'
+// import React, { useState } from 'react'
 
 // const [Graph, SetGraph] = useState('')
-function handleClick (props) {
-
-}
+// function clickHandler (event) {
+//   SetGraph(event.target.id)
+// }
 export default function Analytics (props) {
+  // if (Graph) { console.log('aaaa') }
   return (<div id="page-top">
 
     {/* <!-- Page Wrapper --> */}
@@ -62,7 +64,7 @@ export default function Analytics (props) {
 </table>
     <div className="row">
         <div className='col-sm-1'>
-            <button style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px' }} onClick={handleClick}>Género</button>
+            <button id="genero" style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px' }}>Género</button>
         </div>
         <div className='col-sm-1'>
             <button style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px' }}>Membresía</button>
