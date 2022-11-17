@@ -23,7 +23,7 @@ export default function SendEmail (props) {
                 <div className='card-body p-0' style={{ height: '1000px' }}>
                   <div className='row'>
                   <div className='col-lg-6 d-lg-block'>
-                  <textarea style={{ width: '100%', height: '1000px', border: '0.5px solid gray', borderRadius: '5px' }}></textarea>
+                  <textarea style={{ width: '700px', height: '1000px', border: '0.5px solid gray', borderRadius: '5px', resize: 'none' }}></textarea>
         </div>
                     <div className='col-lg-6' style={{ margin: 'auto 0' }}>
                       <div className='p-5'>
