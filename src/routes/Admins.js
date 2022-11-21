@@ -21,29 +21,11 @@ export default function Admins (props) {
 <div className="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 className="h3 mb-0 text-gray-800">Registros de administradores</h1>
 </div>
-
-{/* <!-- NOTA: Aquí va la tabla de estado de documentos pero se muestra con JS y AJAX--> */}
-
-{/* <!-- Begin Page Content --> */}
 <div className="container-fluid">
 
-{/* <!-- DataTales Example --> */}
 <div className="card shadow mb-4">
     <div className="card-header py-3">
         <h6 className="m-0 font-weight-bold text-primary" style={{ color: 'black' }}>Administradores</h6>
-        {/* <form
-                className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div className="input-group">
-                    <input type="text" className="form-control bg-light border-0 small" placeholder="Buscar"
-                        aria-label="Search" aria-describedby="basic-addon2" style={{ position: 'absolute', right: '50px' }} />
-                    <div className="input-group-append">
-                        <button className="btn btn-primary" type="button" style={{ backgroundColor: '#fbc587', borderColor: '#fbc587' }}>
-                            <i className="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </form> */}
-
     </div>
 
     <div className="card-body">

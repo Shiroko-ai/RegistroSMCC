@@ -3,8 +3,10 @@
 const mongoose = require('mongoose')
 
 const AdminSchema = mongoose.Schema({
-  nombreUsuario: String,
-  password: String
+  nombre: String,
+  usuario: String,
+  password: String,
+  is_admin: Boolean
 })
 
 module.exports = mongoose.model('Admin', AdminSchema)

@@ -68,27 +68,15 @@ export default function Forgot () {
                 <div className='col-lg-6'>
                   <div className='p-5'>
                     <form className='user' onSubmit={submitHandler}>
-                    <HeadingForm
-                    text = "Recuperación de contraseña"
-                    />
-                      <Field
-                      type ='text'
-                      id = 'num_trabajador'
-                      placeholder = 'Correo electrónico'
-                      Handler = {changeHandler}
-                      />
+                      <HeadingForm text="Recuperación de contraseña" />
+                      <Field type='text' id='num_trabajador' placeholder='Correo electrónico' Handler={changeHandler} />
                       <div>
-                      <ButtonLogin
-                      type = 'submit'
-                      text = 'Enviar correo de recuperación' />
-                       </div>
+                        <ButtonLogin type='submit' text='Enviar correo de recuperación' />
+                      </div>
                     </form>
                     <hr />
                     <div className='text-center'>
-                    <LoginLink
-                    to = "/"
-                    text = 'Volver a inicio de sesión'
-                    />
+                      <LoginLink to="/" text='Volver a inicio de sesión' />
                     </div>
                     <div className='text-center'>
                       <p className='h4 mb-4' style={{ color: '#fbc587' }}>{Registrarse}</p>
