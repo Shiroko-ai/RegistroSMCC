@@ -12,14 +12,18 @@ import Info from './routes/Info'
 import RegisterUserAdmin from './routes/RegisterUserAdmin'
 import Analytics from './routes/Analytics'
 import SendEmail from './routes/SendEmail'
+import LoginUser from './routes/LoginUser'
+import Details from './routes/Details'
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route exact path='/' element={<Login />} />
+    <Route exact path='/' element={<LoginUser />} />
+      <Route exact path='/login-admin' element={<Login />} />
       <Route exact path='/register' element={<RegisterUser />} />
       <Route exact path= '/admins' element={<Admins />} />
       <Route exact path= '/mmd' element={<MMD />} />
       <Route exact path= '/users' element={<Users />} />
+      <Route exact path= '/details' element={<Details />} />
       <Route exact path= '/register-mmd' element={<RegisterMMD />} />
       <Route exact path= '/forgot-password' element={<Forgot />} />
       <Route exact path= '/info' element={<Info />} />

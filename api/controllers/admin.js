@@ -1,5 +1,5 @@
 'use strict'
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const Admin = require('../models/admin')
 // este controlador debe de ejecutarlo unicamente el admin debido a que es el unico que podra guardar maestros
 function saveAdmin (req, res) {
@@ -28,11 +28,11 @@ function saveAdmin (req, res) {
             if (err) {
               res.status(500).send({ message: 'Error al guardar usuario' })
             } else {
-              if (!maestroStored) {
+              if (!adminStored) {
                 res.status(404).send({ message: 'No se ha registrado el usuario' })
               } else {
                 // res.status(200).send({ maestro: maestroStored })
-                console.log('maestro guardado', maestroStored)
+                console.log('maestro guardado', adminStored)
                 res.status(200).send({ message: 'Se ha guardado el administrador con exito' })
               }
             }
@@ -98,17 +98,17 @@ function updateAdmin (req, res) {
 
 function deleteAdmin (req, res) {
   const params = req.body
-  const user = params.user
+  const admin = params.user
 
-  Admin.findOneAndDelete({ user: user }, (err, maestro) => {
-    console.log(user)
+  Admin.findOneAndDelete({ user: admin }, (err, maestro) => {
+    console.log(admin)
     if (err) {
       res.status(500).send({ message: 'Error al borrar el usuario' })
     } else {
       if (!maestro) {
         res.status(404).send({ message: 'No se encontro el maestro' })
       } else {
-        res.status(200).send({ message: 'El administador'+admin+'ha sido eliminado'})
+        res.status(200).send({ message: 'El administador' + admin + 'ha sido eliminado' })
       }
     }
   })

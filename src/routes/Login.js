@@ -12,7 +12,7 @@ export default function Form (props) {
 
   const [inicioSesion, setInicioSesion] = useState('')
   const [checkUser, setCheckUser] = useState({
-    user: '',
+    username: '',
     password: ''
   })
 
@@ -29,7 +29,7 @@ export default function Form (props) {
   function submitHandler (event) {
     event.preventDefault()
     setCheckUser(value)
-    fetch('http://localhost:8080/maestros/login', {
+    fetch('http://localhost:8080/admin/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,8 +46,7 @@ export default function Form (props) {
           // setIsAdmin(true)
         }
         setInicioSesion(res.message)
-        return res // Siempre tenemos que retornar la res para poder
-        // utilizarla en otro .then
+        return res
       })
       .then((res) => {
         if (res.token) {

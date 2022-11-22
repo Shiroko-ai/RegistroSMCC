@@ -1,5 +1,5 @@
 'use strict'
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 function saveUser (req, res) {
   const user = new User()
@@ -7,7 +7,7 @@ function saveUser (req, res) {
   const params = req.body
   user.username = params.username
   user.password = params.password
-  user.correo = params.correo
+  user.correo_electronico = params.correo_electronico
   user.correo_institucional = params.correo_institucional
   user.nombre = params.nombre
   user.apellido_paterno = params.apellido_paterno
@@ -34,10 +34,11 @@ function saveUser (req, res) {
         }
         user.password = hash
 
-        if (user.username !== null && user.password !== null && user.correo !== null && user.correo_institucional !== null 
-          && user.nombre !== null && user.apellido_paterno !== null && user.apellido_materno !== null && user.genero !== null && user.id !== null 
-          && user.tipo_membresia !== null && user.area_interes !== null && user.eventos !== null && user.colaboracion !== null && user.motivo !== null && user.institucion !== null) {
-          admin.save((err, userStored) => { // Aqui se guarda el usuario
+        if (user.username !== '' && user.password !== '' && user.correo_electronico !== '' && user.correo_institucional !== '' &&
+          user.nombre !== '' && user.apellido_paterno !== '' && user.apellido_materno !== '' && user.genero !== '' && user.id !== '' &&
+          user.tipo_membresia !== '' && user.area_interes !== '' && user.eventos !== '' && user.colaboracion !== '' && user.motivo !== '' && user.institucion !== '') {
+          user.save((err, userStored) => { // Aqui se guarda el usuario
+            console.log('entre otra vez')
             if (err) {
               res.status(500).send({ message: 'Error al guardar usuario' })
             } else {
@@ -46,22 +47,22 @@ function saveUser (req, res) {
               } else {
                 // res.status(200).send({ maestro: maestroStored })
                 console.log('maestro guardado', userStored)
-                res.status(200).send({ message: 'Se ha guardado el administrador con exito' })
+                res.status(200).send({ message: 'Se ha registrado exitosamente.' })
               }
             }
           })
         } else {
-          res.status(200).send({ message: 'introduce todos los campos' })
+          res.status(200).send({ message: 'Introduce todos los campos.' })
         }
       })
     })
   } else {
-    res.status(500).send({ message: 'introduce la contraseña' })
+    res.status(500).send({ message: 'Introduce la contraseña.' })
   }
 }
 function loginUser (req, res) {
   const params = req.body
-  const user = params.username
+  const username = params.username
   const password = params.password
 
   User.findOne({ username: username }, (err, user) => {
@@ -72,7 +73,7 @@ function loginUser (req, res) {
         res.status(404).send({ message: 'No existe el usuario' })
       } else {
         console.log(user)
-        bcrypt.compare(password, admin.password, function (err, result) {
+        bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
             throw err
           }
@@ -95,11 +96,11 @@ function loginUser (req, res) {
 function updateUser (req, res) {
   const id = req.params.id
   const update = req.body
-  Admin.findByIdAndUpdate(id, update, (err, userUpdated) => {
+  User.findByIdAndUpdate(id, update, (err, userUpdated) => {
     if (err) {
       res.status(500).send({ message: 'Error al actualizar el usuario' })
     } else {
-      if (!adminUpdated) {
+      if (!userUpdated) {
         res.status(404).send({ message: 'No se a podido actualizar el usuario' })
       } else {
         res.status(200).send({ message: userUpdated })
@@ -117,22 +118,22 @@ function deleteUser (req, res) {
     if (err) {
       res.status(500).send({ message: 'Error al borrar el usuario' })
     } else {
-      if (!maestro) {
+      if (!user) {
         res.status(404).send({ message: 'No se encontro el maestro' })
       } else {
-        res.status(200).send({ message: 'El usuario'+username+'ha sido eliminado'})
+        res.status(200).send({ message: 'El usuario' + username + 'ha sido eliminado' })
       }
     }
   })
 }
 function getUsers (req, res) {
-  Admin.find({}, (err, admins) => {
+  User.find({}, (err, users) => {
     if (err) {
       throw err
     } else {
       const users = []
-      admins.forEach(user => { users.push(user) })
-      res.status(200).send({ mmd })
+      users.forEach(user => { users.push(user) })
+      res.status(200).send({ users })
     }
   })
 }

@@ -8,4 +8,4 @@ const MMDSchema = mongoose.Schema({
   password: String
 })
 
-module.exports = mongoose.model('MMD',MMDSchema)
+module.exports = mongoose.model('MMD', MMDSchema)

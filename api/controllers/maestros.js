@@ -1,5 +1,5 @@
 'use strict'
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const Maestro = require('../models/maestros')
 const jwt = require('../middlewares/autenticate')
 function test (req, res) {

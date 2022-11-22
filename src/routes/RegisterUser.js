@@ -5,47 +5,67 @@ import Field from '../components/FieldForm'
 import LoginLink from '../components/LoginLink'
 import ButtonLogin from '../components/ButtonLogin'
 export default function FormRegister () {
-  const [user, setUser] = useState({
-    nombre: '',
-    num_trabajador: '',
-    apellido_paterno: '',
-    apellido_materno: '',
-    password: '',
-    correo: '',
-    isAdmin: false
-  })
+  // const [user, setUser] = useState({
+  //   nombre: '',
+  //   apellido_paterno: '',
+  //   apellido_materno: '',
+  //   username: '',
+  //   password: '',
+  //   correo_electronico: '',
+  //   correo_institucional: '',
+  //   genero: '',
+  //   estado: '',
+  //   tipo_membresia: '',
+  //   area: '',
+  //   eventos: '',
+  //   colaboracion: '',
+  //   motivo: ''
+  // })
   const [value, setValue] = useState({
     nombre: '',
-    num_trabajador: '',
     apellido_paterno: '',
     apellido_materno: '',
+    username: '',
     password: '',
-    correo: '',
-    isAdmin: false
+    correo_electronico: '',
+    correo_institucional: '',
+    genero: '',
+    estado: '',
+    tipo_membresia: '',
+    area: '',
+    eventos: '',
+    colaboracion: '',
+    motivo: ''
   })
-
-  const [Registrarse, setRegistrarse] = useState('')
   function submitHandler (event) {
     event.preventDefault()
     console.log(value)
-    setUser(value)
-    fetch('http://localhost:8080/administration/register', {
+    // setUser(value)
+    // console.log(user)
+    fetch('http://localhost:8080/user/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        numero_trabajador: user.num_trabajador,
-        nombre: user.nombre,
-        password: user.password,
-        apellido_paterno: user.apellido_paterno,
-        apellido_materno: user.apellido_materno,
-        correo: user.correo,
-        isAdmin: user.isAdmin
+        nombre: value.nombre,
+        apellido_paterno: value.apellido_materno,
+        apellido_materno: value.apellido_materno,
+        username: value.username,
+        password: value.password,
+        correo_electronico: value.correo_electronico,
+        correo_institucional: value.correo_institucional,
+        genero: value.genero,
+        estado: value.estado,
+        tipo_membresia: value.tipo_membresia,
+        area: value.area,
+        eventos: value.eventos,
+        colaboracion: value.colaboracion,
+        motivo: value.motivo
       })
     })
       .then((res) => res.json())
-      .then((res) => setRegistrarse(res.message))
+      .then((res) => alert(res.message))
   }
 
   function changeHandler (event) {
@@ -65,8 +85,8 @@ export default function FormRegister () {
             <div className='card-body p-0'>
               <div className='row'>
               <div className='col-lg-6 d-lg-block'>
-    <img src= "../components/SMCC.jpg"/>
-    </div>
+              <img src= "../components/SMCC.jpg"/>
+              </div>
                 <div className='col-lg-6'>
                   <div className='p-5'>
                     <form className='user' onSubmit={submitHandler}>
@@ -95,22 +115,35 @@ export default function FormRegister () {
                       </div>
                       <Field
                       type ='text'
-                      id = 'num_trabajador'
+                      id = 'username'
+                      placeholder = 'Nombre de usuario'
+                      Handler = {changeHandler}
+                      />
+                      <Field
+                      type ='password'
+                      id = 'password'
+                      placeholder = 'Contraseña'
+                      Handler = {changeHandler}
+                      />
+                      <Field
+                      type ='text'
+                      id = 'correo_electronico'
                       placeholder = 'Correo electrónico'
                       Handler = {changeHandler}
                       />
                       <Field
                       type ='text'
-                      id = 'correo'
+                      id = 'correo_institucional'
                       placeholder = 'Correo Institucional'
                       Handler = {changeHandler}
                       />
                       <div className="form-group row">
                       <select
-                      id = 'password'
+                      id = 'genero'
                       name = 'select'
                       className = 'form-control-user'
                       style = {{ width: '100%', border: '1px solid gray' }}
+                      onChange = {changeHandler}
                       >
                       <option selected="selected" style={{ color: 'gray' }}>Genero</option>
                       <option value="Masculino">Masculino</option>
@@ -120,10 +153,11 @@ export default function FormRegister () {
                       </div>
                       <div className="form-group row">
                       <select
-                      id = 'password'
+                      id = 'estado'
                       name = 'select'
                       className = 'form-control-user'
                       style= {{ width: '100%', border: '1px solid gray' }}
+
                       >
                       <option selected="selected">Estado de la república de procedencia</option>
                       <option value="Aguascalientes">Aguascalientes</option>
@@ -162,10 +196,11 @@ export default function FormRegister () {
                       </div>
                       <div className="form-group row">
                       <select
-                      id = 'password'
+                      id = 'tipo_membresia'
                       name = 'select'
                       className = 'form-control-user'
                       style = {{ width: '100%', border: '1px solid gray' }}
+                      onChange = {changeHandler}
                       >
                       <option selected="selected" style={{ color: 'gray' }}>Tipo de membresía</option>
                       <option value="Titular">Titular</option>
@@ -174,25 +209,25 @@ export default function FormRegister () {
                       </div>
                       <Field
                       type ='text'
-                      id = 'correo'
+                      id = 'area'
                       placeholder = 'Area de interés'
                       Handler = {changeHandler}
                       />
-                                            <Field
+                      <Field
                       type ='text'
-                      id = 'correo'
+                      id = 'eventos'
                       placeholder = '¿Qué tipo de eventos le gustaría que se organizaran?'
                       Handler = {changeHandler}
                       />
-                                            <Field
+                      <Field
                       type ='text'
-                      id = 'correo'
+                      id = 'colaboracion'
                       placeholder = '¿Le gustaría colaborar con la SMCC en algún evento? (Especifique de que manera lo haría)'
                       Handler = {changeHandler}
                       />
                                             <Field
                       type ='text'
-                      id = 'correo'
+                      id = 'motivo'
                       placeholder = 'Compártanos el motivo de su intención por adherirse a la SMCC'
                       Handler = {changeHandler}
                       />
@@ -217,9 +252,6 @@ export default function FormRegister () {
                     to = "/"
                     text = 'Ya tienes una cuenta? Inicia sesion'
                     />
-                    </div>
-                    <div className='text-center'>
-                      <p className='h4 mb-4' style={{ color: '#fbc587' }}>{Registrarse}</p>
                     </div>
                   </div>
                 </div>

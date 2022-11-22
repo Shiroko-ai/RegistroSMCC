@@ -6,11 +6,11 @@ const mongoose = require('mongoose')
 const UserSchema = mongoose.Schema({
   username: String,
   password: String,
-  correo : String,
-  correo_institucional : String,
+  correo: String,
+  correo_institucional: String,
   nombre: String,
   apellido_paterno: String,
-  apellido_materno:String,
+  apellido_materno: String,
   genero: String,
   tipo_membresia: String,
   id: String,
@@ -21,9 +21,9 @@ const UserSchema = mongoose.Schema({
   area_interes: String,
   eventos: String,
   colaboracion: String,
-  motivo: String,
+  motivo: String
 
-  //todo: implementar el comprobante de pago
+  // todo: implementar el comprobante de pago
 })
 
 module.exports = mongoose.model('User', UserSchema)
