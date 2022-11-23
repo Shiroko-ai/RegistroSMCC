@@ -42,8 +42,17 @@ export default function Analytics (props) {
                 </div>
 
                 <div className="card-body">
+                <div className="row">
+                    <div className='col-md-2'>
+                      <select style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px', width: '100%' }}>
+                        <option>Membresía</option>
+                        <option>Género</option>
+                        <option>Usuarios Activos</option>
+                      </select>
+                    </div>
+                  </div>
                   <table className="charts-css column show-labels show-heading data-spacing-10"
-                    style={{ height: '300px', maxWidth: '200px', margin: '0 auto', '--color': 'rgb(251, 197, 135)' }}>
+                    style={{ height: '400px', maxWidth: '200px', margin: '0 auto' }}>
                     <caption> Tipo de membresía </caption>
                     <thead>
                       <tr>
@@ -62,17 +71,7 @@ export default function Analytics (props) {
                       </tr>
                     </tbody>
                   </table>
-                  <div className="row">
-                    <div className='col-sm-1'>
-                      <button id="genero" style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px' }}>Género</button>
-                    </div>
-                    <div className='col-sm-1'>
-                      <button style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px' }}>Membresía</button>
-                    </div>
-                    <div className='col-md-2'>
-                      <button style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px', width: '100%' }}>Usuarios activos</button>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>

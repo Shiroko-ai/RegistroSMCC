@@ -35,7 +35,7 @@ export default function Users (props) {
     </div>
 
     <div className="card-body">
-    <div className="row">
+    <div className="row" style={{ paddingBottom: '2rem' }}>
         <div className="col-8">
         <input placeholder="Buscar" style={{
           borderRadius: '5px',
