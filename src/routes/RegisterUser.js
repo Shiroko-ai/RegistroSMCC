@@ -93,6 +93,12 @@ export default function FormRegister () {
                     <HeadingForm
                     text = "Registrarse "
                     />
+                      <Field
+                      type ='text'
+                      id = 'username'
+                      placeholder = '¿Cuentas con un numero de socio? Ingrésalo.'
+                      Handler = {changeHandler}
+                      />
                       <div className='form-group row'>
                         <FieldFormSmall
                         type ='text'
@@ -250,7 +256,11 @@ export default function FormRegister () {
                     <div className='text-center'>
                     <LoginLink
                     to = "/"
-                    text = 'Ya tienes una cuenta? Inicia sesion'
+                    text = '¿Ya tienes una cuenta? Inicia sesion'
+                    />
+                    <LoginLink
+                    to = "/"
+                    text = '¿Pertenecías a la SMCC pero olvidaste tu ID? Recupéralo.'
                     />
                     </div>
                   </div>

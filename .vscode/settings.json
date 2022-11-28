@@ -1,8 +1,11 @@
 {
+    
     "editor.fontLigatures": true,
     "editor.codeActionsOnSave": {
         "source.fixAll": true
     },
     "workbench.editor.showTabs": false,
-    "debug.toolBarLocation": "hidden"
+    "debug.toolBarLocation": "hidden",
+    "window.zoomLevel": 2
+
 }

@@ -45,7 +45,7 @@ export default function LoginForm (props) {
             <div className='card-body p-0'>
               <div className='row'>
                 <IPNImage />
-                <div className='col-lg-6'>
+               <div className='col-lg-6'>
                   <div className='p-5'>
                     <form className='user' onSubmit={submitHandler}>
                     <HeadingForm

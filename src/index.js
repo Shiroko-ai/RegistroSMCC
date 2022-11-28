@@ -14,6 +14,10 @@ import Analytics from './routes/Analytics'
 import SendEmail from './routes/SendEmail'
 import LoginUser from './routes/LoginUser'
 import Details from './routes/Details'
+import RegisterAdmin from './routes/RegisterAdmin'
+import ForgotID from './routes/ForgotID'
+import Payment from './routes/Payment'
+import Container from './components/Container'
 ReactDOM.render(
   <Router>
     <Routes>
@@ -21,11 +25,15 @@ ReactDOM.render(
       <Route exact path='/login-admin' element={<Login />} />
       <Route exact path='/register' element={<RegisterUser />} />
       <Route exact path= '/admins' element={<Admins />} />
+      <Route exact path= '/container' element={<Container/>} />
       <Route exact path= '/mmd' element={<MMD />} />
       <Route exact path= '/users' element={<Users />} />
       <Route exact path= '/details' element={<Details />} />
       <Route exact path= '/register-mmd' element={<RegisterMMD />} />
+      <Route exact path= '/register-admin' element={<RegisterAdmin />} />
       <Route exact path= '/forgot-password' element={<Forgot />} />
+      <Route exact path= '/payment' element={<Payment />} />
+      <Route exact path= '/forgot-id' element={<ForgotID />} />
       <Route exact path= '/info' element={<Info />} />
     <Route exact path= '/register-user-admin' element={<RegisterUserAdmin />} />
     <Route exact path= '/analytics' element={<Analytics />} />

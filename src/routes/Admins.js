@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
+import { Link } from 'react-router-dom'
 export default function Admins (props) {
   return (<div id="page-top">
 
@@ -29,7 +30,21 @@ export default function Admins (props) {
     </div>
 
     <div className="card-body">
+    <div className='row' style = {{ paddingBottom: '20px' }}>
+    <div className='col'>
+    <Link to='/register-mmd'>
+        <button style={{
+          borderRadius: '10px',
+          padding: '10px',
+          border: '1px solid gray'
+        }}>
+            Nuevo
+            </button>
+        </Link>
+    </div>
+    </div>
         <div className="table-responsive">
+
             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                 <thead>
                     <tr>
@@ -144,5 +159,6 @@ export default function Admins (props) {
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
 
-  </div>)
+  </div>
+  )
 }

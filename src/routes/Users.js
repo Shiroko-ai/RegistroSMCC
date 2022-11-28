@@ -14,7 +14,6 @@ export default function Users (props) {
               <Navbar
               user = {props.worker}
               />
-
             {/* <!-- End of Main Content --> */}
             <div className="container-fluid">
 

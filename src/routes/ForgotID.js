@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import HeadingForm from '../components/HeadingUser'
 import Field from '../components/FieldForm'
-import SMCCLogo from '../components/SMCCLogo'
+import LoginLink from '../components/LoginLink'
+import IPNImage from '../components/SMCCLogo'
 import ButtonLogin from '../components/ButtonLogin'
-export default function RegisterMMD () {
+export default function Forgot () {
   const [user, setUser] = useState({
     nombre: '',
     num_trabajador: '',
@@ -57,60 +58,25 @@ export default function RegisterMMD () {
     })
   }
   return (
-    <>
     <div className='container-center'>
       <div className='row justify-content-center'>
         <div className='col-xl-10 col-lg-12 col-md-9'>
           <div className='card o-hidden border-0 shadow-lg my-5'>
             <div className='card-body p-0'>
               <div className='row'>
-                <SMCCLogo />
+                <IPNImage />
                 <div className='col-lg-6'>
                   <div className='p-5'>
                     <form className='user' onSubmit={submitHandler}>
-                    <HeadingForm
-                    text = "Pago"
-                    />
-                      <Field
-                      type ='text'
-                      id = 'num_trabajador'
-                      placeholder = 'ID de socio'
-                      Handler = {changeHandler}
-                      />
-
-                      <Field
-                      type ='text'
-                      id = 'num_trabajador'
-                      placeholder = 'Apellidos'
-                      Handler = {changeHandler}
-                      />
-
-                      <Field
-                      type ='text'
-                      id = 'num_trabajador'
-                      placeholder = 'Nombre de usuario'
-                      Handler = {changeHandler}
-                      />
-                      <Field
-                      type ='text'
-                      id = 'num_trabajador'
-                      placeholder = 'Contraseña'
-                      Handler = {changeHandler}
-                      />
-                      <Field
-                      type ='text'
-                      id = 'num_trabajador'
-                      placeholder = 'Numero de socio'
-                      Handler = {changeHandler}
-                      />
+                      <HeadingForm text="Recuperación de ID" />
+                      <Field type='text' id='num_trabajador' placeholder='Correo electrónico' Handler={changeHandler} />
                       <div>
-                      <ButtonLogin
-                      type = 'submit'
-                      text = 'Guardar' />
-                       </div>
+                        <ButtonLogin type='submit' text='Enviar correo de recuperación' />
+                      </div>
                     </form>
                     <hr />
                     <div className='text-center'>
+                      <LoginLink to="/" text='Volver a inicio de sesión' />
                     </div>
                     <div className='text-center'>
                       <p className='h4 mb-4' style={{ color: '#fbc587' }}>{Registrarse}</p>
@@ -126,5 +92,5 @@ export default function RegisterMMD () {
       </div>
 
     </div>
-    </>)
+  )
 }

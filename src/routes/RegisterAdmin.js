@@ -4,7 +4,7 @@ import ButtonLogin from '../components/ButtonLogin'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import { useState } from 'react'
-export default function RegisterUserAdmin (props) {
+export default function RegisterAdmin (props) {
   const [user, setUser] = useState({
     nombre: '',
     num_trabajador: '',
@@ -83,7 +83,7 @@ export default function RegisterUserAdmin (props) {
                       <div className='p-5'>
                         <form className='user' onSubmit={submitHandler}>
                         <HeadingForm
-                        text = "Registrar MMD "
+                        text = "Registrar administrador "
                         />
                           <Field
                           type ='text'
