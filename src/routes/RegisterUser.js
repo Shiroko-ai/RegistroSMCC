@@ -4,6 +4,28 @@ import HeadingForm from '../components/HeadingUser'
 import Field from '../components/FieldForm'
 import LoginLink from '../components/LoginLink'
 import ButtonLogin from '../components/ButtonLogin'
+import styled from 'styled-components'
+const Wrapper = styled.div`
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.75rem;
+    margin-left: -0.75rem;
+    flex: 0 0 100%;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+`
+const Container = styled.div`
+    flex: 0 0 100%;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+`
 export default function FormRegister () {
   // const [user, setUser] = useState({
   //   nombre: '',
@@ -78,9 +100,9 @@ export default function FormRegister () {
     })
   }
   return (
-    <div className='container-center'>
-      <div className='row justify-content-center'>
-        <div className='col-xl-10 col-lg-12 col-md-9'>
+
+        <Wrapper>
+        <Container className='col-xl-10 col-lg-12 '>
           <div className='card o-hidden border-0 shadow-lg my-5'>
             <div className='card-body p-0'>
               <div className='row'>
@@ -269,10 +291,9 @@ export default function FormRegister () {
             </div>
           </div>
 
-        </div>
+        </Container>
 
-      </div>
+      </Wrapper>
 
-    </div>
   )
 }

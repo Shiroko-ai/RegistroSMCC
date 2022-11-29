@@ -1,17 +1,44 @@
+import styled from 'styled-components'
 export default function Navbar (props) {
+  const Navbar = styled.nav`
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%);
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  background-color: #b1b1b1;
+  height: 4.375rem;
+  `
+  const NavbarList = styled.ul`
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    margin-left: auto;
+  `
+  const NavbarItem = styled.li`
+    position: relative;
+   `
+  const Name = styled.span`
+    margin-right: 0.5rem;
+    display: inline;
+    color: black;
+    font-size: 80%;
+    font-weight: 400;
+ `
   return (
-        <nav className="navbar navbar-expand navbar-light topbar mb-4 static-top shadow" style={ { backgroundColor: '#b1b1b1' }}>
-            <ul className="navbar-nav ml-auto">
-                <li className="nav-item dropdown no-arrow">
-                    <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span className="mr-2 d-none d-lg-inline text-gray-600 small" style={{ color: '#800040' }}>{props.user}</span>
-                        <img className="img-profile rounded-circle"
-                            src="img/undraw_profile.svg" />
-                    </a>
-                </li>
+        <Navbar>
+            <NavbarList>
+                <NavbarItem>
+                        <Name>Oscar Ivan Palacios Ulloa</Name>
+                </NavbarItem>
 
-            </ul>
+            </NavbarList>
 
-        </nav>)
+        </Navbar>)
 }
