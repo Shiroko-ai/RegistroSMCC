@@ -1,6 +1,6 @@
-import HeadingForm from '../components/HeadingUser'
-import ButtonLogin from '../components/ButtonLogin'
-import Navbar from '../components/Navbar'
+import HeadingForm from '../components/HeadingForm/HeadingForm'
+import ButtonLogin from '../components/Button/Button'
+import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 export default function SendEmail (props) {
   return (

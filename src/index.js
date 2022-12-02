@@ -19,8 +19,7 @@ import ForgotID from './routes/ForgotID'
 import Payment from './routes/Payment'
 import Container from './components/Container'
 import Form from './components/Form'
-import Field from './components/FieldForm'
-
+import Field from './components/Field/Field'
 ReactDOM.render(
   <Router>
     <Routes>
@@ -28,7 +27,7 @@ ReactDOM.render(
       <Route exact path='/login-admin' element={<Login />} />
       <Route exact path='/register' element={<RegisterUser />} />
       <Route exact path= '/admins' element={<Admins />} />
-      <Route exact path= '/container' element={<Container><Field placeholder = "HOla"/></Container>} />
+      <Route exact path= '/container' element={<Container><Field placeholder = "Hola"/></Container>} />
       <Route exact path= '/mmd' element={<MMD />} />
       <Route exact path= '/users' element={<Users />} />
       <Route exact path= '/form' element={<Form heading = "registrarse">

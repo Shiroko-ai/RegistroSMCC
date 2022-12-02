@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 export default function Users (props) {
   return (<div id="page-top">

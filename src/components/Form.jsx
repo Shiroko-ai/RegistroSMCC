@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import HeadingForm from './HeadingUser'
+import HeadingForm from './HeadingForm/HeadingForm'
 const Heading = styled.h1`
     padding : 2rem;
     color : black;

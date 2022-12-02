@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import HeadingForm from '../components/HeadingUser'
-import Field from '../components/FieldForm'
-import LoginLink from '../components/LoginLink'
+import HeadingForm from '../components/HeadingForm/HeadingForm'
+import Field from '../components/Field/Field'
+import LoginLink from '../components/LoginLink/LoginLink'
 import IPNImage from '../components/SMCCLogo'
-import ButtonLogin from '../components/ButtonLogin'
+import ButtonLogin from '../components/Button/Button'
 export default function Forgot () {
   const [user, setUser] = useState({
     nombre: '',

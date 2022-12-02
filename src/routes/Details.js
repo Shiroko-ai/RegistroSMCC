@@ -1,4 +1,4 @@
-import HeadingForm from '../components/HeadingUser'
+import HeadingForm from '../components/HeadingForm/HeadingForm'
 export default function LoginForm (props) {
   return (
       <div className='container-center'>

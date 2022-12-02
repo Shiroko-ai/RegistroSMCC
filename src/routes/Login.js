@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import ButtonLogin from '../components/ButtonLogin'
-import Field from '../components/FieldForm'
-import HeadingForm from '../components/HeadingUser'
-import LoginLink from '../components/LoginLink'
+import ButtonLogin from '../components/Button/Button'
+import Field from '../components/Field/Field'
+import HeadingForm from '../components/HeadingForm/HeadingForm'
+import LoginLink from '../components/LoginLink/LoginLink'
 import SMCCLogo from '../components/SMCCLogo'
 export default function Form (props) {
   const [value, setValue] = useState({

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import HeadingForm from '../components/HeadingUser'
-import Field from '../components/FieldForm'
+import HeadingForm from '../components/HeadingForm/HeadingForm'
+import Field from '../components/Field/Field'
 import SMCCLogo from '../components/SMCCLogo'
-import ButtonLogin from '../components/ButtonLogin'
+import ButtonLogin from '../components/Button/Button'
 export default function RegisterMMD () {
   const [user, setUser] = useState({
     nombre: '',

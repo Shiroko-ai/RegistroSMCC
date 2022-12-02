@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import FieldFormSmall from '../components/FieldFormSmall'
-import HeadingForm from '../components/HeadingUser'
-import Field from '../components/FieldForm'
-import LoginLink from '../components/LoginLink'
-import ButtonLogin from '../components/ButtonLogin'
+import FieldFormSmall from '../components/FieldSmall/FieldSmall'
+import HeadingForm from '../components/HeadingForm/HeadingForm'
+import Field from '../components/Field/Field'
+import LoginLink from '../components/LoginLink/LoginLink'
+import ButtonLogin from '../components/Button/Button'
 import styled from 'styled-components'
 const Wrapper = styled.div`
     justify-content: center;
@@ -27,22 +27,6 @@ const Container = styled.div`
     padding-left: 0.75rem;
 `
 export default function FormRegister () {
-  // const [user, setUser] = useState({
-  //   nombre: '',
-  //   apellido_paterno: '',
-  //   apellido_materno: '',
-  //   username: '',
-  //   password: '',
-  //   correo_electronico: '',
-  //   correo_institucional: '',
-  //   genero: '',
-  //   estado: '',
-  //   tipo_membresia: '',
-  //   area: '',
-  //   eventos: '',
-  //   colaboracion: '',
-  //   motivo: ''
-  // })
   const [value, setValue] = useState({
     nombre: '',
     apellido_paterno: '',
@@ -165,24 +149,21 @@ export default function FormRegister () {
                       placeholder = 'Correo Institucional'
                       Handler = {changeHandler}
                       />
-                      <div className="form-group row">
-                      <select
+                      <Field
+                      type = 'select'
                       id = 'genero'
-                      name = 'select'
-                      className = 'form-control-user'
-                      style = {{ width: '100%', border: '1px solid gray' }}
+                      name = 'genero'
                       onChange = {changeHandler}
                       >
-                      <option selected="selected" style={{ color: 'gray' }}>Genero</option>
+                      <option selected="selected">Genero</option>
                       <option value="Masculino">Masculino</option>
                       <option value="Femenino">Femenino</option>
                       <option value="Desconocido">Prefiero no especificar</option>
-                      </select>
-                      </div>
-                      <div className="form-group row">
-                      <select
+                      </Field>
+                      <Field
+                      type = 'select'
                       id = 'estado'
-                      name = 'select'
+                      name = 'estado'
                       className = 'form-control-user'
                       style= {{ width: '100%', border: '1px solid gray' }}
 
@@ -220,21 +201,18 @@ export default function FormRegister () {
                       <option value="Veracruz">Veracruz</option>
                       <option value="Yucatán">Yucatán</option>
                       <option value="Zacatecas">Zacatecas</option>
-                      </select>
-                      </div>
-                      <div className="form-group row">
-                      <select
+                      </Field>
+                      <Field
+                      type = 'select'
                       id = 'tipo_membresia'
-                      name = 'select'
+                      name = 'tipo_membresia'
                       className = 'form-control-user'
-                      style = {{ width: '100%', border: '1px solid gray' }}
                       onChange = {changeHandler}
                       >
                       <option selected="selected" style={{ color: 'gray' }}>Tipo de membresía</option>
                       <option value="Titular">Titular</option>
                       <option value="Estudiante">Estudiante</option>
-                      </select>
-                      </div>
+                      </Field>
                       <Field
                       type ='text'
                       id = 'area'
@@ -253,7 +231,7 @@ export default function FormRegister () {
                       placeholder = '¿Le gustaría colaborar con la SMCC en algún evento? (Especifique de que manera lo haría)'
                       Handler = {changeHandler}
                       />
-                                            <Field
+                      <Field
                       type ='text'
                       id = 'motivo'
                       placeholder = 'Compártanos el motivo de su intención por adherirse a la SMCC'

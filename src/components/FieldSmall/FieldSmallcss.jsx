@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-const InputField = styled.input`
+export const InputField = styled.input`
 width : 100%;
 display: block;
 border-radius : 10rem;
@@ -16,7 +16,7 @@ outline: 0;
 box-shadow: 0 0 0 0.2rem rgb(78 115 223 / 25%);
 }
 `
-const DivField = styled.div`
+export const DivField = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
@@ -25,13 +25,3 @@ const DivField = styled.div`
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 `
-export default function FieldFormSmall (props) {
-  return (<DivField>
-    <InputField
-      type={props.type}
-      id={props.id}
-      placeholder={props.placeholder}
-      onChange = {props.Handler}
-    />
-  </DivField>)
-}

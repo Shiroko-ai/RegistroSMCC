@@ -1,4 +1,4 @@
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 import { Link } from 'react-router-dom'
 export default function Admins (props) {

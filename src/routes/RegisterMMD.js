@@ -1,7 +1,7 @@
-import HeadingForm from '../components/HeadingUser'
-import Field from '../components/FieldForm'
-import ButtonLogin from '../components/ButtonLogin'
-import Navbar from '../components/Navbar'
+import HeadingForm from '../components/HeadingForm/HeadingForm'
+import Field from '../components/Field/Field'
+import ButtonLogin from '../components/Button/Button'
+import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 import { useState } from 'react'
 export default function RegisterUserAdmin (props) {
