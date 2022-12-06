@@ -28,13 +28,18 @@ export default function LoginForm (props) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: value.username,
+        correo_electronico: value.username,
         password: value.password,
         gethash: false
       })
     })
       .then((res) => res.json())
-      .then((res) => { if (res.user) { alert('Bienvenido') } else { alert('Ingresa de nuevo tus datos') } })
+      .then((res) => {
+        if (res.user) { alert('Bienvenido') } else {
+          console.log()
+          alert(res.message)
+        }
+      })
   }
 
   return (
@@ -55,7 +60,7 @@ export default function LoginForm (props) {
                           type='text'
                           className='form-control form-control-user'
                           id='username'
-                          placeholder='Nombre de usuario'
+                          placeholder='Correo electrónico'
                           Handler = {changeHandler}
                         />
                         <Field

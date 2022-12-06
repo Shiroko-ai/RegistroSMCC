@@ -5,10 +5,9 @@ export default function Field ({ children, ...props }) {
     return (
     <DivField>
       <SelectField
-        type= {props.type}
-        id={props.id} aria-describedby={props.aria}
-        placeholder={props.placeholder}
-        onChange={props.Handler}
+        type= { props.type }
+        id={ props.id }
+        onChange={ props.Handler }
       >
       { children }
       </SelectField>

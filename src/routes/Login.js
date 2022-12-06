@@ -29,7 +29,7 @@ export default function Form (props) {
   function submitHandler (event) {
     event.preventDefault()
     setCheckUser(value)
-    fetch('http://localhost:8080/admin/login', {
+    fetch('http://localhost:8080/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ export default function Form (props) {
                           type='text'
                           className='form-control form-control-user'
                           id='user' aria-describedby='emailHelp'
-                          placeholder='Nombre de usuario'
+                          placeholder='Correo electrónico'
                           Handler = {changeHandler}
                         />
                         <Field

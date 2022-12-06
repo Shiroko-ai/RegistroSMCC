@@ -77,6 +77,7 @@ export default function FormRegister () {
   function changeHandler (event) {
     const { id, value } = event.target
     setValue((prevValue) => {
+      console.log('entre')
       return ({
         ...prevValue,
         [id]: value
@@ -153,7 +154,7 @@ export default function FormRegister () {
                       type = 'select'
                       id = 'genero'
                       name = 'genero'
-                      onChange = {changeHandler}
+                      Handler = {changeHandler}
                       >
                       <option selected="selected">Genero</option>
                       <option value="Masculino">Masculino</option>
@@ -164,9 +165,8 @@ export default function FormRegister () {
                       type = 'select'
                       id = 'estado'
                       name = 'estado'
-                      className = 'form-control-user'
                       style= {{ width: '100%', border: '1px solid gray' }}
-
+                      Handler = {changeHandler}
                       >
                       <option selected="selected">Estado de la república de procedencia</option>
                       <option value="Aguascalientes">Aguascalientes</option>
@@ -207,7 +207,7 @@ export default function FormRegister () {
                       id = 'tipo_membresia'
                       name = 'tipo_membresia'
                       className = 'form-control-user'
-                      onChange = {changeHandler}
+                      Handler = {changeHandler}
                       >
                       <option selected="selected" style={{ color: 'gray' }}>Tipo de membresía</option>
                       <option value="Titular">Titular</option>

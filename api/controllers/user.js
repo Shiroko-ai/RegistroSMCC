@@ -62,10 +62,10 @@ function saveUser (req, res) {
 }
 function loginUser (req, res) {
   const params = req.body
-  const username = params.username
+  const correoElectronico = params.correo_electronico
   const password = params.password
-
-  User.findOne({ username: username }, (err, user) => {
+  console.log(correoElectronico)
+  User.findOne({ correo_electronico: correoElectronico }, (err, user) => {
     if (err) {
       res.status(500).send({ message: 'Error en la petición' })
     } else {
