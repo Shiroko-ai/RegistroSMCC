@@ -18,7 +18,7 @@ export default function Field ({ children, ...props }) {
       <DivField>
         <InputField
           type= {props.type}
-          id={props.id} aria-describedby={props.aria}
+          id={props.id}
           placeholder={props.placeholder}
           onChange={props.Handler}
         />

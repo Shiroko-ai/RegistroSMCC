@@ -1,14 +1,64 @@
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 import 'charts.css'
-// import React, { useState } from 'react'
-
-// const [Graph, SetGraph] = useState('')
-// function clickHandler (event) {
-//   SetGraph(event.target.id)
-// }
+import { useState } from 'react'
 export default function Analytics (props) {
-  // if (Graph) { console.log('aaaa') }
+  const [value, setValue] = useState({
+    valor1: '',
+    valor2: '',
+    total: 1,
+    nombre1: '',
+    nombre2: '',
+    Titular: ''
+  })
+  function changeHandler(event) {
+    const valor = event.target.value
+    console.log(valor)
+    event.preventDefault()
+    if (valor === 'ninguno') {
+      console.log('entre')
+      setValue({
+        valor1: '',
+        valor2: '',
+        total: 1,
+        nombre1: '',
+        nombre2: '',
+        Titular: ''
+      })
+    } else {
+      fetch('http://localhost:8080/user/return-table', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          value: valor
+        })
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (valor === 'genero') {
+            setValue({
+              valor1: res.valor1,
+              valor2: res.valor2,
+              total: res.total,
+              nombre1: 'Femenino',
+              nombre2: 'Masculino',
+              Titular: res.Titular
+            })
+          } else if (valor === 'membresia') {
+            setValue({
+              valor1: res.valor1,
+              valor2: res.valor2,
+              total: res.total,
+              nombre1: 'Titular',
+              nombre2: 'Estudiante',
+              Titular: res.Titular
+            })
+          }
+        })
+    }
+  }
   return (<div id="page-top">
 
     {/* <!-- Page Wrapper --> */}
@@ -42,18 +92,19 @@ export default function Analytics (props) {
                 </div>
 
                 <div className="card-body">
-                <div className="row">
+                <div className="row" style={{ paddingBottom: '2rem' }}>
                     <div className='col-md-2'>
-                      <select style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px', width: '100%' }}>
-                        <option>Membresía</option>
-                        <option>Género</option>
-                        <option>Usuarios Activos</option>
+                      <select style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px', width: '100%' }} onChange={changeHandler}>
+                        <option value="ninguno">Seleccione una opcion</option>
+                        <option value="membresia">Membresía</option>
+                        <option value="genero">Género</option>
+                        {/* <option value="activos">Usuarios Activos</option> */}
                       </select>
                     </div>
                   </div>
                   <table className="charts-css column show-labels show-heading data-spacing-10"
                     style={{ height: '400px', maxWidth: '200px', margin: '0 auto' }}>
-                    <caption> Tipo de membresía </caption>
+                    <caption style={{ textAlign: 'center' }}> {value.Titular} </caption>
                     <thead>
                       <tr>
                         <th scope="col">Tipo de membresía</th>
@@ -62,12 +113,12 @@ export default function Analytics (props) {
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row"> Titular </th>
-                        <td style={{ '--size': '0.3' }}> <span className="data"> 30 </span> </td>
+                        <th scope="row"> {value.nombre1} </th>
+                        <td style={{ '--size': `${value.valor1 / value.total}` }}> <span className="data"> {value.valor1} </span> </td>
                       </tr>
                       <tr>
-                        <th scope="row"> Estudiante </th>
-                        <td style={{ '--size': '0.9' }}> <span className="data"> 50 </span> </td>
+                        <th scope="row"> {value.nombre2} </th>
+                        <td style={{ '--size': `${value.valor2 / value.total}` }}> <span className="data"> {value.valor2}</span> </td>
                       </tr>
                     </tbody>
                   </table>

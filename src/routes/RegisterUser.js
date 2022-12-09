@@ -5,6 +5,7 @@ import Field from '../components/Field/Field'
 import LoginLink from '../components/LoginLink/LoginLink'
 import ButtonLogin from '../components/Button/Button'
 import styled from 'styled-components'
+import SMCCLogo from '../components/SMCCLogo'
 const Wrapper = styled.div`
     justify-content: center;
     display: flex;
@@ -91,9 +92,7 @@ export default function FormRegister () {
           <div className='card o-hidden border-0 shadow-lg my-5'>
             <div className='card-body p-0'>
               <div className='row'>
-              <div className='col-lg-6 d-lg-block'>
-              <img src= "../components/SMCC.jpg"/>
-              </div>
+              <SMCCLogo />
                 <div className='col-lg-6'>
                   <div className='p-5'>
                     <form className='user' onSubmit={submitHandler}>

@@ -1,6 +1,7 @@
 'use strict'
 const bcrypt = require('bcryptjs')
 const Admin = require('../models/admin')
+const User = require('../models/user')
 // este controlador debe de ejecutarlo unicamente el admin debido a que es el unico que podra guardar maestros
 function saveAdmin (req, res) {
   const admin = new Admin()
@@ -113,6 +114,32 @@ function deleteAdmin (req, res) {
     }
   })
 }
+
+function returnTable(req, res) {
+  const params = req.body
+  console.log('entre')
+  if (params.value === 'genero') {
+    let contadorfemenino = 0
+    let contadormasculino = 0
+    User.find({ genero: 'Femenino' }, (err, generofemenino) => {
+      if (err) {
+        res.status(500).send({ error: 'Un error inesperado ha ocurrido' })
+      } else {
+        contadorfemenino = generofemenino.length
+      }
+    }
+    )
+    User.find({ genero: 'Masculino' }, (err, generofemenino) => {
+      if (err) {
+        res.status(500).send({ error: 'Un error inesperado ha ocurrido' })
+      } else {
+        contadormasculino = generofemenino.length
+      }
+    }
+    )
+    res.status(200).send({ femenino: contadorfemenino, masculino: contadormasculino })
+  }
+}
 function getAdmins (req, res) {
   Admin.find({}, (err, maestros) => {
     if (err) {
@@ -129,5 +156,6 @@ module.exports = {
   saveAdmin: saveAdmin,
   deleteAdmin: deleteAdmin,
   updateAdmin: updateAdmin,
-  getAdmins: getAdmins
+  getAdmins: getAdmins,
+  returnTable: returnTable
 }

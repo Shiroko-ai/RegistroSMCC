@@ -4,23 +4,12 @@ import ButtonLogin from '../components/Button/Button'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 import { useState } from 'react'
+import SMCCLogo from '../components/SMCCLogo'
 export default function RegisterUserAdmin (props) {
-  const [user, setUser] = useState({
-    nombre: '',
-    num_trabajador: '',
-    apellido_paterno: '',
-    apellido_materno: '',
-    password: '',
-    correo: '',
-    isAdmin: false
-  })
   const [value, setValue] = useState({
     nombre: '',
-    num_trabajador: '',
-    apellido_paterno: '',
-    apellido_materno: '',
+    usuario: '',
     password: '',
-    correo: '',
     isAdmin: false
   })
 
@@ -28,20 +17,16 @@ export default function RegisterUserAdmin (props) {
   function submitHandler (event) {
     event.preventDefault()
     console.log(value)
-    setUser(value)
-    fetch('http://localhost:8080/administration/register', {
+    fetch('http://localhost:8080/admin/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        numero_trabajador: user.num_trabajador,
-        nombre: user.nombre,
-        password: user.password,
-        apellido_paterno: user.apellido_paterno,
-        apellido_materno: user.apellido_materno,
-        correo: user.correo,
-        isAdmin: user.isAdmin
+        nombre: value.nombre,
+        user: value.usuario,
+        password: value.password,
+        isAdmin: value.isAdmin
       })
     })
       .then((res) => res.json())
@@ -76,9 +61,7 @@ export default function RegisterUserAdmin (props) {
               <div className='card o-hidden border-0 shadow-lg my-5'>
                 <div className='card-body p-0'>
                   <div className='row'>
-                  <div className='col-lg-6 d-lg-block'>
-        <img src= "../components/SMCC.jpg"/>
-        </div>
+                  <SMCCLogo/>
                     <div className='col-lg-6'>
                       <div className='p-5'>
                         <form className='user' onSubmit={submitHandler}>

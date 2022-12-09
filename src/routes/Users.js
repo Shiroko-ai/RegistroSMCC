@@ -1,7 +1,52 @@
+import { useEffect, useState } from 'react'
+import { ExportToCsv } from 'export-to-csv'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 export default function Users (props) {
+  const [listUsers, setlistUsers] = useState([])
+  const [tableUsers, setTableUsers] = useState([])
+  let list = []
+  useEffect(() => {
+    fetch('http://localhost:8080/user/get-users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        list = res.sendusers
+        console.log(list.nombre)
+        setlistUsers(list)
+        setTableUsers(listUsers)
+      })
+  }, [])
+  function handleSearch(event) {
+    if (event.target.value !== '') {
+      setTableUsers(listUsers.filter(o => Object.keys(o).some(k => String(o[k]).toLowerCase().includes(event.target.value.toLowerCase()))))
+    } else {
+      setTableUsers(listUsers)
+    }
+  }
+  function handleExport() {
+    const options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true,
+      showTitle: true,
+      title: 'Datos de usuarios',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      filename: 'Datos de usuarios'
+    }
+
+    const csvExporter = new ExportToCsv(options)
+
+    csvExporter.generateCsv(listUsers)
+  }
   return (<div id="page-top">
 
     {/* <!-- Page Wrapper --> */}
@@ -40,7 +85,8 @@ export default function Users (props) {
           borderRadius: '5px',
           border: '1px solid gray',
           padding: '10px'
-        }}></input></div>
+        }}
+        onChange = {handleSearch}/></div>
         <div className="col">
         <button style={{
           borderRadius: '10px',
@@ -64,12 +110,12 @@ export default function Users (props) {
           borderRadius: '10px',
           padding: '10px',
           border: '1px solid gray'
-        }}>Exportar datos
+        }} onClick = {handleExport}>Exportar datos
     </button>
         </div>
     </div>
         <div className="table-responsive">
-            <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+            <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0" >
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -79,49 +125,16 @@ export default function Users (props) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                        <Link to = '/info' style={{ textDecoration: 'none', color: '#858796' }}>
-                            Juan Perez Lopez
-                        </Link>
-                        </td>
-                        <td>1</td>
-                        <td>Estudiante</td>
-                        <td align="center">
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Iván Perez Lopez</td>
-                        <td>2</td>
-                        <td>Estudiante</td>
-                        <td align="center">
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Oscar Perez Lopez</td>
-                        <td>3</td>
-                        <td>Titular</td>
-                        <td align="center">
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                   {tableUsers.map((listValue, index) => {
+                     return (
+                        <tr key={index}>
+                            <td>{listValue.nombre}</td>
+                            <td>{listValue.password}</td>
+                            <td>{listValue.tipo_membresia}</td>
+                            <td>Borrar</td>
+                        </tr>
+                     )
+                   })}
                 </tbody>
                 <tfoot>
                 <tr>

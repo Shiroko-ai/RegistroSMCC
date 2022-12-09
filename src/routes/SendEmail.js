@@ -2,7 +2,44 @@ import HeadingForm from '../components/HeadingForm/HeadingForm'
 import ButtonLogin from '../components/Button/Button'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
+import styled from 'styled-components'
+import { useState } from 'react'
+import Field from '../components/Field/Field'
+const Correo = styled.textarea`
+  width: 100%;
+  height: 930px;
+  border: 0.5px solid gray; 
+  border-radius: 1rem; 
+  resize: none;
+  padding: 1rem;
+`
+
 export default function SendEmail (props) {
+  const [mensaje, setMensage] = useState({ message: '', asunto: '' })
+
+  function handleChange(event) {
+    const { id, value } = event.target
+    setMensage((prevValue) => {
+      return ({
+        ...prevValue,
+        [id]: value
+      })
+    })
+    console.log(mensaje)
+  }
+  function handleMail(event) {
+    event.preventDefault()
+    fetch('http://localhost:8080/user/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: mensaje.message,
+        asunto: mensaje.asunto
+      })
+    })
+  }
   return (
     <div id="wrapper">
       <Sidebar
@@ -23,11 +60,22 @@ export default function SendEmail (props) {
                 <div className='card-body p-0' style={{ height: '1000px' }}>
                   <div className='row'>
                   <div className='col-lg-6 d-lg-block'>
-                  <textarea style={{ width: '700px', height: '1000px', border: '0.5px solid gray', borderRadius: '5px', resize: 'none' }}></textarea>
+                  <Field
+                  type= 'text'
+                  id='asunto'
+                  placeholder='asunto'
+                  Handler={handleChange}
+                      />
+
+                  <Correo
+                  onChange={handleChange}
+                  placeholder = 'Mensaje'
+                  id='message'
+                  />
         </div>
                     <div className='col-lg-6' style={{ margin: 'auto 0' }}>
                       <div className='p-5'>
-                        <form className='user'>
+                        <form className='user' onSubmit={handleMail}>
                         <HeadingForm
                         text = "Enviar e-mail"
                         />
@@ -47,8 +95,9 @@ export default function SendEmail (props) {
                         </div>
                         <hr />
                         <ButtonLogin
-                          type = 'submit'
-                          text = 'Enviar' />
+                        type = 'submit'
+                          text = 'Enviar'
+                          />
 
                         </form>
                         <div className='text-center'>

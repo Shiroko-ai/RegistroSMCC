@@ -1,6 +1,7 @@
 'use strict'
 const bcrypt = require('bcryptjs')
 const User = require('../models/user')
+const nodemailer = require('nodemailer')
 function saveUser (req, res) {
   const user = new User()
   console.log('entre')
@@ -46,7 +47,7 @@ function saveUser (req, res) {
                 res.status(404).send({ message: 'No se ha registrado el usuario' })
               } else {
                 // res.status(200).send({ maestro: maestroStored })
-                console.log('maestro guardado', userStored)
+                console.log('usuario guardado', userStored)
                 res.status(200).send({ message: 'Se ha registrado exitosamente.' })
               }
             }
@@ -127,13 +128,135 @@ function deleteUser (req, res) {
   })
 }
 function getUsers (req, res) {
-  User.find({}, (err, users) => {
+  User.find({}, (err, usuarios) => {
     if (err) {
       throw err
     } else {
-      const users = []
-      users.forEach(user => { users.push(user) })
-      res.status(200).send({ users })
+      const sendusers = []
+      usuarios.forEach(usuario => { sendusers.push(usuario) })
+      console.log(sendusers)
+      res.status(200).send({ sendusers })
+    }
+  })
+}
+function returnTable(req, res) {
+  const params = req.body
+  console.log('entre')
+  if (params.value === 'genero') {
+    User.find({ genero: 'Femenino' }, (err, generofemenino) => {
+      if (err) {
+        res.status(500).send({ error: 'Un error inesperado ha ocurrido' })
+      } else {
+        User.find({ genero: 'Masculino' }, (err, generomasculino) => {
+          if (err) {
+            res.status(500).send({ error: 'Un error inesperado ha ocurrido' })
+          } else {
+            if (generofemenino > generomasculino) {
+              res.status(200).send({
+                valor1: generofemenino.length,
+                valor2: generomasculino.length,
+                total: generofemenino.length,
+                Titular: 'Genero'
+              })
+            } else {
+              res.status(200).send({
+                valor1: generofemenino.length,
+                valor2: generomasculino.length,
+                total: generomasculino.length,
+                Titular: 'Genero'
+              })
+            }
+          }
+        }
+        )
+      }
+    }
+    )
+  } else if (params.value === 'activos') {
+    User.find({ genero: 'Femenino' }, (err, generofemenino) => {
+      if (err) {
+        res.status(500).send({ error: 'Un error inesperado ha ocurrido' })
+      } else {
+        User.find({ genero: 'Masculino' }, (err, generomasculino) => {
+          if (err) {
+            res.status(500).send({ error: 'Un error inesperado ha ocurrido' })
+          } else {
+            if (generofemenino > generomasculino) {
+              res.status(200).send({
+                femenino: generofemenino.length,
+                masculino: generomasculino.length,
+                total: generofemenino.length,
+                Titular: 'Genero'
+              })
+            } else {
+              res.status(200).send({
+                femenino: generofemenino.length,
+                masculino: generomasculino.length,
+                total: generomasculino.length,
+                Titular: 'Genero'
+              })
+            }
+          }
+        }
+        )
+      }
+    }
+    )
+  } else if (params.value === 'membresia') {
+    User.find({ tipo_membresia: 'Titular' }, (err, titular) => {
+      if (err) {
+        res.status(500).send({ error: 'Un error inesperado ha ocurrido' })
+      } else {
+        User.find({ genero: 'Estudiante' }, (err, estudiante) => {
+          if (err) {
+            res.status(500).send({ error: 'Un error inesperado ha ocurrido' })
+          } else {
+            if (titular > estudiante) {
+              res.status(200).send({
+                valor1: titular.length,
+                valor2: estudiante.length,
+                total: titular.length,
+                Titular: 'Membresía'
+              })
+            } else {
+              res.status(200).send({
+                valor1: titular.length,
+                valor2: estudiante.length,
+                total: estudiante.length,
+                Titular: 'Membresía'
+              })
+            }
+          }
+        }
+        )
+      }
+    }
+    )
+  }
+}
+function sendEmail (req, res) {
+  const params = req.body
+  console.log(params)
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'gaticovanced.1@gmail.com',
+      pass: 'gwxgrybvhnvkuoix'
+    }
+  })
+
+  const mailOptions = {
+    from: 'gaticovanced.1@gmail.com',
+    to: 'ivanpalacios2809@gmail.com',
+    subject: params.asunto,
+    text: params.message
+  }
+
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Email sent: ' + info.response)
     }
   })
 }
@@ -142,5 +265,7 @@ module.exports = {
   saveUser: saveUser,
   deleteUser: deleteUser,
   updateUser: updateUser,
-  getUsers: getUsers
+  getUsers: getUsers,
+  returnTable: returnTable,
+  sendEmail: sendEmail
 }
