@@ -58,11 +58,11 @@ const Item = styled(Link)`
         padding: 1rem;
         width: 14rem;
         text-decoration: none;
-        color: black;
+        color: #b1b1b1;
         font-size: 0.85rem;
         &:hover{
             text-decoration: none;
-            color: black;
+            color: #fbc587;
         }
 `
 export default function Sidebar (props) {

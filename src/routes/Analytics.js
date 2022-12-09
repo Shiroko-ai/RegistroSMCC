@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 import 'charts.css'
 import { useState } from 'react'
+import Field from '../components/Field/Field'
 export default function Analytics (props) {
   const [value, setValue] = useState({
     valor1: '',
@@ -94,12 +95,12 @@ export default function Analytics (props) {
                 <div className="card-body">
                 <div className="row" style={{ paddingBottom: '2rem' }}>
                     <div className='col-md-2'>
-                      <select style={{ border: '1px solid gray', borderRadius: '5px', padding: '10px', width: '100%' }} onChange={changeHandler}>
+                      <Field type = 'select' Handler={changeHandler}>
                         <option value="ninguno">Seleccione una opcion</option>
                         <option value="membresia">Membresía</option>
                         <option value="genero">Género</option>
                         {/* <option value="activos">Usuarios Activos</option> */}
-                      </select>
+                      </Field>
                     </div>
                   </div>
                   <table className="charts-css column show-labels show-heading data-spacing-10"
@@ -114,11 +115,11 @@ export default function Analytics (props) {
                     <tbody>
                       <tr>
                         <th scope="row"> {value.nombre1} </th>
-                        <td style={{ '--size': `${value.valor1 / value.total}` }}> <span className="data"> {value.valor1} </span> </td>
+                        <td style={{ '--size': `${value.valor1 / value.total}`, '--color': '#fbc587' }}> <span className="data"> {value.valor1} </span> </td>
                       </tr>
                       <tr>
                         <th scope="row"> {value.nombre2} </th>
-                        <td style={{ '--size': `${value.valor2 / value.total}` }}> <span className="data"> {value.valor2}</span> </td>
+                        <td style={{ '--size': `${value.valor2 / value.total}`, '--color': '#a69d2a' }}> <span className="data"> {value.valor2}</span> </td>
                       </tr>
                     </tbody>
                   </table>

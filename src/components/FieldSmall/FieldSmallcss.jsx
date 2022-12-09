@@ -11,9 +11,8 @@ height: calc(1.5em + 0.75rem + 2px);
 transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 &:focus {
 background-color: #fff;
-border-color: #bac8f3;
+border-color: #fbc587;
 outline: 0;
-box-shadow: 0 0 0 0.2rem rgb(78 115 223 / 25%);
 }
 `
 export const DivField = styled.div`

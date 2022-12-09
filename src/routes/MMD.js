@@ -1,6 +1,17 @@
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { Buttonlogin } from '../components/Button/Buttoncss'
+import { Linkd } from '../components/LoginLink/LoginLinkcss'
+const Button = styled(Buttonlogin)`
+  text-decoration: none;
+  width: 10%;
+  &:hover{
+    text-decoration: none;
+    background-color: #fbc587;
+    
+  }
+`
 export default function Admins (props) {
   return (<div>
     <div id="wrapper">
@@ -29,15 +40,11 @@ export default function Admins (props) {
     <div className="card-body">
     <div className='row' style = {{ paddingBottom: '20px' }}>
     <div className='col'>
-    <Link to='/register-mmd'>
-        <button style={{
-          borderRadius: '10px',
-          padding: '10px',
-          border: '1px solid gray'
-        }}>
+    <Linkd to='/register-mmd'>
+        <Button>
             Nuevo
-            </button>
-        </Link>
+            </Button>
+        </Linkd>
     </div>
     </div>
         <div className="table-responsive">

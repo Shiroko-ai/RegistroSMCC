@@ -1,8 +1,22 @@
 import { useEffect, useState } from 'react'
 import { ExportToCsv } from 'export-to-csv'
-import { Link } from 'react-router-dom'
+import { Linkd } from '../components/LoginLink/LoginLinkcss'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
+import styled from 'styled-components'
+import { InputField } from '../components/Field/Fieldcss'
+import { Buttonlogin } from '../components/Button/Buttoncss'
+const Buscar = styled(InputField)`
+  width: 30%;
+`
+const Button = styled(Buttonlogin)`
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+    background-color: #fbc587;
+    
+  }
+`
 export default function Users (props) {
   const [listUsers, setlistUsers] = useState([])
   const [tableUsers, setTableUsers] = useState([])
@@ -81,37 +95,24 @@ export default function Users (props) {
     <div className="card-body">
     <div className="row" style={{ paddingBottom: '2rem' }}>
         <div className="col-8">
-        <input placeholder="Buscar" style={{
-          borderRadius: '5px',
-          border: '1px solid gray',
-          padding: '10px'
-        }}
-        onChange = {handleSearch}/></div>
-        <div className="col">
-        <button style={{
-          borderRadius: '10px',
-          padding: '10px',
-          border: '1px solid gray'
-        }}>Nuevo
-    </button>
+        <Buscar placeholder="Buscar"
+                  type= "text"
+                  id="Buscar"
+                  onChange = {handleSearch}/>
         </div>
         <div className="col">
-        <Link to='/send-email'>
-        <button style={{
-          borderRadius: '10px',
-          padding: '10px',
-          border: '1px solid gray'
-        }}>Envío de correo
-    </button>
-    </Link>
+        <Button>Nuevo
+    </Button>
         </div>
         <div className="col">
-        <button style={{
-          borderRadius: '10px',
-          padding: '10px',
-          border: '1px solid gray'
-        }} onClick = {handleExport}>Exportar datos
-    </button>
+        <Linkd to='/send-email'>
+        <Button>Envío de correo
+    </Button>
+    </Linkd>
+        </div>
+        <div className="col">
+        <Button onClick = {handleExport}>Exportar datos
+    </Button>
         </div>
     </div>
         <div className="table-responsive">
