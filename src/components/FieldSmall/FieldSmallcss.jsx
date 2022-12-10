@@ -6,7 +6,7 @@ border-radius : 10rem;
 font-size : 0.8rem;
 padding : 1.5rem 1rem;
 color : black;
-border : 1px solid #d1d3e2;
+border : 2px solid #d1d3e2;
 height: calc(1.5em + 0.75rem + 2px);
 transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 &:focus {

@@ -14,6 +14,7 @@ export const Buttonlogin = styled.button`
     user-select: none;
     border: 1px solid transparent;
     &:hover{
+    transition: background-color 0.2s ease-in;
     text-decoration: none;
     background-color: #fbc587;
     
