@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar'
 import styled from 'styled-components'
 import { Buttonlogin } from '../components/Button/Buttoncss'
 import { Linkd } from '../components/LoginLink/LoginLinkcss'
+import { useState, useEffect } from 'react'
 const Button = styled(Buttonlogin)`
   text-decoration: none;
   width: 10%;
@@ -13,6 +14,26 @@ const Button = styled(Buttonlogin)`
   }
 `
 export default function Admins (props) {
+  const [listUsers, setlistUsers] = useState([])
+  let list = []
+  useEffect(() => {
+    fetch('http://localhost:8080/admin/get-admin/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        admins: true
+      })
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        list = res.sendmaestros
+        console.log(list.nombre)
+        console.log(res)
+        setlistUsers(list)
+      })
+  }, [])
   return (<div id="page-top">
 
     {/* <!-- Page Wrapper --> */}
@@ -43,7 +64,7 @@ export default function Admins (props) {
     <div className="card-body">
     <div className='row' style = {{ paddingBottom: '20px' }}>
     <div className='col'>
-    <Linkd to='/register-mmd'>
+    <Linkd to='/register-admin'>
         <Button>
             Nuevo
             </Button>
@@ -62,45 +83,16 @@ export default function Admins (props) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Juan Perez Lopez</td>
-                        <td>ROPOPT</td>
-                        <td>12345697</td>
-                        <td align="center">
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Juan Perez Lopez</td>
-                        <td>ROPOPT</td>
-                        <td>12345697</td>
-                        <td align="center">
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Juan Perez Lopez</td>
-                        <td>ROPOPT</td>
-                        <td>12345697</td>
-                        <td align="center">
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                {listUsers.map((listValue, index) => {
+                  return (
+                        <tr key={index}>
+                            <td>{listValue.nombre}</td>
+                            <td>{listValue.user}</td>
+                            <td>{listValue.password}</td>
+                            <td>Borrar</td>
+                        </tr>
+                  )
+                })}
                 </tbody>
             </table>
         </div>
@@ -123,49 +115,6 @@ export default function Admins (props) {
 
     </div>
     {/* <!-- End of Page Wrapper --> */}
-
-    {/* <!-- Scroll to Top Button--> */}
-    <a className="scroll-to-top rounded" href="#page-top">
-        <i className="fas fa-angle-up"></i>
-    </a>
-
-    {/* <!-- Logout Modal--> */}
-    <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div className="modal-dialog" role="document">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div className="modal-body">Selecciona Salir para cerrar la sesión.</div>
-                <div className="modal-footer">
-                    <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a className="btn btn-primary" href="login.php">Salir</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {/* <!-- Bootstrap core JavaScript--> */}
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    {/* <!-- Core plugin JavaScript--> */}
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    {/* <!-- Custom scripts for all pages--> */}
-    <script src="js/sb-admin-2.min.js"></script>
-
-    {/* <!-- Page level plugins --> */}
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    {/* <!-- Page level custom scripts --> */}
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-
   </div>
   )
 }

@@ -8,29 +8,44 @@ import SMCCLogo from '../components/SMCCLogo'
 export default function RegisterUserAdmin (props) {
   const [value, setValue] = useState({
     nombre: '',
-    usuario: '',
-    password: '',
-    isAdmin: false
+    user: '',
+    password: ''
   })
 
-  const [Registrarse, setRegistrarse] = useState('')
   function submitHandler (event) {
     event.preventDefault()
     console.log(value)
-    fetch('http://localhost:8080/admin/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        nombre: value.nombre,
-        user: value.usuario,
-        password: value.password,
-        isAdmin: value.isAdmin
+    if (props.name === 'MMD') {
+      fetch('http://localhost:8080/admin/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: value.nombre,
+          user: value.user,
+          password: value.password,
+          is_admin: false
+        })
       })
-    })
-      .then((res) => res.json())
-      .then((res) => setRegistrarse(res.message))
+        .then((res) => res.json())
+        .then((res) => alert(res.message))
+    } else if (props.name === 'Administrador') {
+      fetch('http://localhost:8080/admin/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: value.nombre,
+          user: value.user,
+          password: value.password,
+          is_admin: true
+        })
+      })
+        .then((res) => res.json())
+        .then((res) => alert(res.message))
+    }
   }
 
   function changeHandler (event) {
@@ -66,23 +81,24 @@ export default function RegisterUserAdmin (props) {
                       <div className='p-5'>
                         <form className='user' onSubmit={submitHandler}>
                         <HeadingForm
-                        text = "Registrar MMD "
+                        text = 'Registrar '
+                        name = {props.name}
                         />
                           <Field
                           type ='text'
-                          id = 'num_trabajador'
+                          id = 'nombre'
                           placeholder = 'Nombre'
                           Handler = {changeHandler}
                           />
                           <Field
                           type ='text'
-                          id = 'correo'
+                          id = 'user'
                           placeholder = 'Usuario'
                           Handler = {changeHandler}
                           />
                           <Field
                           type ='password'
-                          id = 'correo'
+                          id = 'password'
                           placeholder = 'Contraseña'
                           Handler = {changeHandler}
                           />
@@ -92,9 +108,6 @@ export default function RegisterUserAdmin (props) {
                         </form>
                         <hr />
                         <div className='text-center'>
-                        </div>
-                        <div className='text-center'>
-                          <p className='h4 mb-4' style={{ color: '#fbc587' }}>{Registrarse}</p>
                         </div>
                       </div>
                     </div>

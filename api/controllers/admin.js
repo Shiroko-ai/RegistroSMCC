@@ -5,12 +5,12 @@ const User = require('../models/user')
 // este controlador debe de ejecutarlo unicamente el admin debido a que es el unico que podra guardar maestros
 function saveAdmin (req, res) {
   const admin = new Admin()
-  console.log('entre')
   const params = req.body
+  console.log('usuario' + params.user)
   admin.nombre = params.nombre
   admin.user = params.user
   admin.password = params.password
-  console.log(admin)
+  admin.is_admin = params.is_admin
   // TODO: encriptar la contraseña
   const saltRounds = 10
   if (params.password) {
@@ -24,7 +24,7 @@ function saveAdmin (req, res) {
         }
         admin.password = hash
 
-        if (admin.nombre != null && admin.user != null && admin.password != null) {
+        if (admin.nombre !== null && admin.user !== null && admin.password !== null && admin.isadmin !== null) {
           admin.save((err, adminStored) => { // Aqui se guarda el usuario
             if (err) {
               res.status(500).send({ message: 'Error al guardar usuario' })
@@ -32,9 +32,13 @@ function saveAdmin (req, res) {
               if (!adminStored) {
                 res.status(404).send({ message: 'No se ha registrado el usuario' })
               } else {
-                // res.status(200).send({ maestro: maestroStored })
-                console.log('maestro guardado', adminStored)
-                res.status(200).send({ message: 'Se ha guardado el administrador con exito' })
+                if (admin.is_admin) {
+                  console.log('administrador guardado', adminStored)
+                  res.status(200).send({ message: 'Se ha guardado el administrador con exito' })
+                } else {
+                  res.status(200).send({ message: 'Se ha guardado el mmd con exito' })
+                  console.log('mmd' + adminStored)
+                }
               }
             }
           })
@@ -141,7 +145,8 @@ function returnTable(req, res) {
   }
 }
 function getAdmins (req, res) {
-  Admin.find({}, (err, maestros) => {
+  const params = req.body
+  Admin.find({ is_admin: params.admins }, (err, maestros) => {
     if (err) {
       throw err
     } else {

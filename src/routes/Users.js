@@ -33,7 +33,7 @@ export default function Users (props) {
         list = res.sendusers
         console.log(list.nombre)
         setlistUsers(list)
-        setTableUsers(listUsers)
+        setTableUsers(list)
       })
   }, [])
   function handleSearch(event) {

@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const AdminSchema = mongoose.Schema({
   nombre: String,
-  usuario: String,
+  user: String,
   password: String,
   is_admin: Boolean
 })

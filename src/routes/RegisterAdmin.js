@@ -5,47 +5,46 @@ import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar'
 import { useState } from 'react'
 export default function RegisterAdmin (props) {
-  const [user, setUser] = useState({
-    nombre: '',
-    num_trabajador: '',
-    apellido_paterno: '',
-    apellido_materno: '',
-    password: '',
-    correo: '',
-    isAdmin: false
-  })
   const [value, setValue] = useState({
     nombre: '',
-    num_trabajador: '',
-    apellido_paterno: '',
-    apellido_materno: '',
-    password: '',
-    correo: '',
-    isAdmin: false
+    user: '',
+    password: ''
   })
 
-  const [Registrarse, setRegistrarse] = useState('')
   function submitHandler (event) {
     event.preventDefault()
     console.log(value)
-    setUser(value)
-    fetch('http://localhost:8080/administration/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        numero_trabajador: user.num_trabajador,
-        nombre: user.nombre,
-        password: user.password,
-        apellido_paterno: user.apellido_paterno,
-        apellido_materno: user.apellido_materno,
-        correo: user.correo,
-        isAdmin: user.isAdmin
+    if (props.name === 'MMD') {
+      fetch('http://localhost:8080/admin/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: value.nombre,
+          user: value.user,
+          password: value.password,
+          is_admin: false
+        })
       })
-    })
-      .then((res) => res.json())
-      .then((res) => setRegistrarse(res.message))
+        .then((res) => res.json())
+        .then((res) => alert(res.message))
+    } else if (props.name === 'Administrador') {
+      fetch('http://localhost:8080/admin/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: value.nombre,
+          user: value.user,
+          password: value.password,
+          is_admin: true
+        })
+      })
+        .then((res) => res.json())
+        .then((res) => alert(res.message))
+    }
   }
 
   function changeHandler (event) {
@@ -83,7 +82,7 @@ export default function RegisterAdmin (props) {
                       <div className='p-5'>
                         <form className='user' onSubmit={submitHandler}>
                         <HeadingForm
-                        text = "Registrar administrador "
+                        text = "Registrar administrador"
                         />
                           <Field
                           type ='text'
@@ -111,7 +110,6 @@ export default function RegisterAdmin (props) {
                         <div className='text-center'>
                         </div>
                         <div className='text-center'>
-                          <p className='h4 mb-4' style={{ color: '#fbc587' }}>{Registrarse}</p>
                         </div>
                       </div>
                     </div>

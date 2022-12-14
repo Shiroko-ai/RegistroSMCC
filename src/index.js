@@ -30,8 +30,8 @@ ReactDOM.render(
       <Route exact path= '/mmd' element={<MMD />} />
       <Route exact path= '/users' element={<Users />} />
       <Route exact path= '/details' element={<Details />} />
-      <Route exact path= '/register-mmd' element={<RegisterMMD />} />
-      <Route exact path= '/register-admin' element={<RegisterAdmin />} />
+      <Route exact path= '/register-mmd' element={<RegisterMMD name = 'MMD'/>} />
+      <Route exact path= '/register-admin' element={<RegisterMMD name = 'Administrador'/>} />
       <Route exact path= '/forgot-password' element={<Forgot />} />
       <Route exact path= '/payment' element={<Payment />} />
       <Route exact path= '/forgot-id' element={<ForgotID />} />

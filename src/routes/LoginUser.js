@@ -4,6 +4,16 @@ import Field from '../components/Field/Field'
 import HeadingForm from '../components/HeadingForm/HeadingForm'
 import LoginLink from '../components/LoginLink/LoginLink'
 import IPNImage from '../components/SMCCLogo'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+    justify-content: center !important;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.75rem;
+    margin-left: -0.75rem;
+`
+
 export default function LoginForm (props) {
   const [value, setValue] = useState({
     user: '',
@@ -36,15 +46,14 @@ export default function LoginForm (props) {
       .then((res) => res.json())
       .then((res) => {
         if (res.user) { alert('Bienvenido') } else {
-          console.log()
           alert(res.message)
         }
       })
   }
 
   return (
-      <div className='container-center'>
-      <div className='row justify-content-center'>
+
+      <Wrapper>
         <div className='col-xl-10 col-lg-12 col-md-9'>
           <div className='card o-hidden border-0 shadow-lg my-5'>
             <div className='card-body p-0'>
@@ -94,8 +103,6 @@ export default function LoginForm (props) {
 
         </div>
 
-      </div>
-
-    </div>
+      </Wrapper>
   )
 }

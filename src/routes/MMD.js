@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar'
 import styled from 'styled-components'
 import { Buttonlogin } from '../components/Button/Buttoncss'
 import { Linkd } from '../components/LoginLink/LoginLinkcss'
+import { useEffect, useState } from 'react'
 const Button = styled(Buttonlogin)`
   text-decoration: none;
   width: 10%;
@@ -12,7 +13,26 @@ const Button = styled(Buttonlogin)`
     
   }
 `
+
 export default function Admins (props) {
+  const [listUsers, setlistUsers] = useState([])
+  let list = []
+  useEffect(() => {
+    fetch('http://localhost:8080/admin/get-admin/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        admins: false
+      })
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        list = res.sendmaestros
+        setlistUsers(list)
+      })
+  }, [])
   return (<div>
     <div id="wrapper">
       <Sidebar
@@ -23,7 +43,7 @@ export default function Admins (props) {
               <Navbar
               user = {props.worker}
               />
-
+{/* //getadmin */}
 <div className="container-fluid">
 
 <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -58,46 +78,16 @@ export default function Admins (props) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Juan Perez Lopez</td>
-                        <td>ROPOPT</td>
-                        <td>12345697</td>
-                        <td align="center">
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Juan Perez Lopez</td>
-                        <td>ROPOPT</td>
-                        <td>12345697</td>
-                        <td align="center">
-
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Juan Perez Lopez</td>
-                        <td>ROPOPT</td>
-                        <td>12345697</td>
-                        <td align="center">
-                            <a href="#" className="btn btn-warning btn-circle btn-sm">
-                                <i className="fas"><img src="img/icon-editar"/></i>
-                            </a>
-                            <a href="#" className="btn btn-danger btn-circle btn-sm">
-                                <i className="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                {listUsers.map((listValue, index) => {
+                  return (
+                        <tr key={index}>
+                            <td>{listValue.nombre}</td>
+                            <td>{listValue.user}</td>
+                            <td>{listValue.password}</td>
+                            <td>Borrar</td>
+                        </tr>
+                  )
+                })}
                 </tbody>
             </table>
         </div>
